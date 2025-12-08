@@ -1,69 +1,83 @@
 ---
 import { useTranslations } from '../i18n/utils';
 
-interface Props {
-  lang: 'cs' | 'en';
-}
-
-const { lang } = Astro.props;
+// Force CS
+const lang = 'cs';
 const t = useTranslations(lang);
 ---
 
-<footer id="footer" class="bg-deep-charcoal text-gray-400 py-12 border-t-4 border-bronze">
-    <div class="container mx-auto px-4">
-        <div class="grid md:grid-cols-3 gap-12">
+<footer id="footer" class="bg-deep-charcoal text-gray-400 border-t-4 border-bronze relative overflow-hidden">
+    <!-- Background Pattern -->
+    <div class="absolute inset-0 opacity-5 pointer-events-none" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M54.627 0l.83.828-1.415 1.415-.828-.828-.828.828-1.415-1.415.828-.828-.828-.828 1.415-1.415.828.828.828-.828 1.415 1.415-.828.828zM22.485 0l.83.828-1.415 1.415-.828-.828-.828.828-1.415-1.415.828-.828-.828-.828 1.415-1.415.828.828.828-.828 1.415 1.415-.828.828zM0 22.485l.828.83-1.415 1.415-.828-.828-.828.828L-3.658 22.485l.828-.828-.828-.828 1.415-1.415.828.828.828-.828 1.415 1.415-.828.828zM0 54.627l.828.83-1.415 1.415-.828-.828-.828.828L-3.658 54.627l.828-.828-.828-.828 1.415-1.415.828.828.828-.828 1.415 1.415-.828.828zM54.627 60l.83-.828-1.415-1.415-.828.828-.828-.828-1.415 1.415.828.828-.828.828 1.415 1.415.828-.828.828.828 1.415-1.415-.828-.828zM22.485 60l.83-.828-1.415-1.415-.828.828-.828-.828-1.415 1.415.828.828-.828.828 1.415 1.415.828-.828.828.828 1.415-1.415-.828-.828zM32 11.414l-2.828-2.828L32 5.758l2.828 2.828L32 11.414zM4.172 11.414l2.828-2.828L4.172 5.758 1.344 8.586l2.828 2.828zm27.828 27.828l2.828-2.828L32 33.586l-2.828 2.828 2.828 2.828zm27.828 0l2.828-2.828L64.172 33.586l-2.828 2.828 2.828 2.828zM33.414 4.828l2.828 2.828L39.07 4.828 36.242 2l-2.828 2.828zm-27.828 0l2.828 2.828L11.242 4.828 8.414 2 5.586 4.828zM33.414 36.242l2.828 2.828 2.828-2.828-2.828-2.828-2.828 2.828zM5.586 36.242l2.828 2.828 2.828-2.828-2.828-2.828-2.828 2.828z\' fill=\'%23ffffff\' fill-rule=\'evenodd\'/%3E%3C/svg%3E');"></div>
+
+    <div class="container mx-auto px-4 py-16 relative z-10">
+        <div class="grid lg:grid-cols-3 gap-12 lg:gap-20 items-start">
             
             <!-- Info -->
-            <div class="space-y-4">
-                <h3 class="text-2xl font-display font-bold text-light-cream">Slovanské Silové Klání</h3>
-                <p>
-                    {lang === 'cs' 
-                       ? '4. ročník amatérské silové soutěže v Pustiměři.' 
-                       : '4th annual amateur strongman competition in Pustimer.'}
+            <div class="space-y-6">
+                <div class="flex items-center gap-3 mb-6">
+                     <svg class="w-12 h-12 text-viking-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
+                     </svg>
+                     <h3 class="text-3xl font-display font-bold text-light-cream leading-none">Slovanské <br/>Silové Klání</h3>
+                </div>
+                <p class="text-lg text-gray-400">
+                    5. ročník amatérské silové soutěže, kde se rodí legendy. Pustiměř 2026.
                 </p>
-                <div class="flex gap-4 pt-4">
+                <div class="flex gap-4 pt-2">
                      <!-- Facebook -->
-                     <a href="https://www.facebook.com/profile.php?id=61572156929014" target="_blank" rel="noopener noreferrer" class="hover:text-viking-red transition-colors">
-                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+                     <a href="https://www.facebook.com/profile.php?id=61572156929014" target="_blank" rel="noopener noreferrer" class="bg-black/30 p-3 rounded-full hover:bg-viking-red hover:text-white transition-all transform hover:scale-110 border border-white/10">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
                      </a>
                      <!-- Instagram -->
-                     <a href="#" class="hover:text-viking-red transition-colors">
-                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                     <a href="https://www.instagram.com/p/DGjQtT_NKwT/" target="_blank" rel="noopener noreferrer" class="bg-black/30 p-3 rounded-full hover:bg-viking-red hover:text-white transition-all transform hover:scale-110 border border-white/10">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                      </a>
                 </div>
             </div>
 
             <!-- Contact -->
-            <div class="space-y-4">
-                <h3 class="text-xl font-display font-bold text-light-cream">{lang === 'cs' ? 'Kontakt' : 'Contact'}</h3>
-                <ul class="space-y-2">
-                    <li class="flex items-center gap-2">
-                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                         <a href="mailto:SlovanskeSiloveKlani@gmail.com" class="hover:text-viking-red">SlovanskeSiloveKlani@gmail.com</a>
-                    </li>
-                    <li class="flex items-center gap-2">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                        <span>Pustiměř, za Hasičskou zbrojnicí</span>
-                    </li>
-                </ul>
+            <div class="space-y-6">
+                <h3 class="text-2xl font-display font-bold text-light-cream border-l-4 border-viking-red pl-4">Kontakt</h3>
+                <div class="space-y-4">
+                    <div class="flex flex-col gap-2">
+                         <span class="text-sm font-semibold text-gray-500 uppercase">Email</span>
+                         <a href="mailto:SlovanskeSiloveKlani@gmail.com" class="inline-flex items-center gap-2 px-6 py-3 bg-viking-red text-white hover:bg-white hover:text-viking-red font-bold rounded-md transition-all duration-300 w-max shadow-lg">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                            Kontaktovat Organizátora
+                         </a>
+                    </div>
+                    
+                    <div class="flex flex-col gap-2">
+                        <span class="text-sm font-semibold text-gray-500 uppercase">Adresa</span>
+                        <div class="flex items-start gap-3 text-white">
+                            <svg class="w-6 h-6 text-viking-red mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            <span>Pustiměřské Prusy, hasičská zbrojnice<br/>Česká Republika</span>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Map -->
-            <div class="h-48 bg-stone/50 rounded-lg overflow-hidden relative">
+            <div class="h-64 bg-stone/50 rounded-lg overflow-hidden relative shadow-2xl border-2 border-white/10 group">
                  <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2602.859664539659!2d17.0319!3d49.2783!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDnCsDE2JzQxLjkiTiAxN8KwMDEnNTQuOCJF!5e0!3m2!1sen!2scz!4v1620000000000!5m2!1sen!2scz" 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2602.5!2d17.03!3d49.28!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4712f3b9c0c0c0c1%3A0x0!2sHasi%C4%8Dsk%C3%A1%20zbrojnice%20Pustim%C4%9B%C5%99sk%C3%A9%20Prusy!5e0!3m2!1sen!2scz!4v1620000000000!5m2!1sen!2scz" 
                     width="100%" 
                     height="100%" 
                     style="border:0;" 
                     allowfullscreen="" 
                     loading="lazy"
-                    class="grayscale hover:grayscale-0 transition-all duration-500"
+                    class="grayscale group-hover:grayscale-0 transition-all duration-500 opacity-80 group-hover:opacity-100"
                 ></iframe>
+                <a href="https://maps.google.com/?q=Pustiměřské+Prusy+hasičská+zbrojnice" target="_blank" class="absolute bottom-4 right-4 bg-white text-black px-4 py-2 rounded-md font-bold text-sm shadow-lg hover:bg-gray-200 transition-colors">
+                    Otevřít v mapách
+                </a>
             </div>
         </div>
         
-        <div class="mt-12 pt-8 border-t border-gray-800 text-center text-sm">
-            &p; {new Date().getFullYear()} Slovanské Silové Klání. {t('footer.rights') || 'All rights reserved.'} | Designed for Warriors
+        <div class="mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+            <p>&copy; {new Date().getFullYear()} Slovanské Silové Klání. {t('footer.rights')}</p>
+            <p class="mt-2 md:mt-0 opacity-50">Designed for Warriors</p>
         </div>
     </div>
 </footer>

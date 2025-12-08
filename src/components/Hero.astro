@@ -10,11 +10,10 @@ const t = useTranslations(lang);
   
   <!-- Background Image with Overlay -->
   <div class="absolute inset-0 z-0">
-    <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/80 z-10"></div>
-    <!-- Using local image if available, fallback to placeholder URL but referencing the concept of public/images/hero -->
+    <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/80 z-10"></div>
+    <!-- Using local image -->
     <div class="w-full h-full bg-cover bg-center bg-no-repeat bg-fixed transform scale-105" 
-         style="background-image: url('/images/hero/hero-bg.jpg');"> 
-         <!-- Note: User needs to ensure this file exists or I need to put a placeholder there. I will put a placeholder there via command. -->
+         style="background-image: url('/images/hero/hero-bg.jpg'); filter: contrast(1.1) brightness(0.7) sepia(0.3) saturate(1.2);"> 
     </div>
   </div>
 

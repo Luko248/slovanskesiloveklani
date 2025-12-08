@@ -1,51 +1,49 @@
 ---
-import { useTranslations } from '../i18n/utils';
-
-interface Props {
-  lang: 'cs' | 'en';
-}
-
-const { lang } = Astro.props;
-const t = useTranslations(lang);
-
-// TODO: Move this content to i18n
 const features = [
-  "Originální disciplíny / Original disciplines",
-  "Komplexní zatížení / Full body challenge",
-  "Zdravotník na místě / Medic on site",
-  "Občerstvení / Refreshments",
-  "Soutěžní trička / Competition T-shirts",
-  "Adrenalin & Soudržnost / Adrenaline & Camaraderie"
+  "Originální disciplíny",
+  "Komplexní zatížení celého těla",
+  "Zdravotník na místě",
+  "Občerstvení zajištěno",
+  "Soutěžní trička",
+  "Adrenalin & Soudržnost"
 ];
 ---
 
-<section id="about" class="py-20 bg-parchment dark:bg-deep-charcoal relative">
-    <div class="container mx-auto px-4">
-        <div class="grid md:grid-cols-2 gap-12 items-center">
+<section id="about" class="py-24 bg-parchment dark:bg-deep-charcoal relative overflow-hidden">
+    <div class="container mx-auto px-4 z-10 relative">
+        <div class="grid md:grid-cols-2 gap-16 items-center">
             
             <!-- Text Content -->
-            <div class="space-y-6">
-                <div class="inline-flex items-center gap-3">
-                    <span class="h-px w-8 bg-viking-red dark:bg-fire-orange"></span>
-                    <h2 class="text-3xl md:text-4xl font-display font-bold text-viking-red dark:text-fire-orange">
-                        {t('about.heading') || "O soutěži"}
+            <div class="space-y-8">
+                <div class="inline-flex items-center gap-4">
+                    <span class="h-1 w-12 bg-viking-red"></span>
+                    <h2 class="text-4xl md:text-5xl font-display font-bold text-charcoal dark:text-light-cream">
+                        O soutěži
                     </h2>
-                    <span class="h-px w-8 bg-viking-red dark:bg-fire-orange"></span>
                 </div>
                 
-                <p class="text-lg leading-relaxed text-charcoal dark:text-gray-300">
-                    Slovanské Silové Klání je amatérská silová soutěž zaměřená na komplexní sílu celého těla. 
-                    Soutěž je určena pro běžné cvičence, kteří chtějí ukázat svou funkční sílu v reálných podmínkách.
-                    <br><br>
-                    Na rozdíl od klasických posilovacích soutěží se zde nezvedají dokonale vyvážené činky, 
-                    ale pouze to, co nám nadělila Matka Příroda.
-                </p>
+                <div class="prose prose-lg dark:prose-invert">
+                    <p class="text-xl leading-relaxed text-charcoal dark:text-gray-300 font-medium">
+                        Slovanské Silové Klání je amatérská silová soutěž zaměřená na komplexní sílu celého těla. 
+                        Soutěž je určena pro běžné cvičence, kteří chtějí ukázat svou funkční sílu v reálných podmínkách.
+                    </p>
+                    <p class="text-lg leading-relaxed text-gray-600 dark:text-gray-400">
+                        Na rozdíl od klasických posilovacích soutěží se zde nezvedají dokonale vyvážené činky, 
+                        ale pouze to, co nám nadělila Matka Příroda - kameny, klády, železo. 
+                        Disciplíny testují sílu, rychlost, výbušnost a vytrvalost.
+                    </p>
+                    <p class="text-lg leading-relaxed text-viking-red font-bold italic">
+                        "Zde budete krvácet. Účast bolí. Ale odnesete si víc než jen tričko."
+                    </p>
+                </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
                     {features.map(feature => (
-                        <div class="flex items-center gap-2">
-                             <svg class="w-5 h-5 text-viking-red dark:text-fire-orange flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                             <span class="font-semibold text-sm">{feature}</span>
+                        <div class="flex items-center gap-3 p-3 bg-white/50 dark:bg-black/20 rounded-lg border border-bronze/20">
+                             <div class="text-viking-red">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                             </div>
+                             <span class="font-semibold text-charcoal dark:text-gray-200">{feature}</span>
                         </div>
                     ))}
                 </div>
@@ -53,10 +51,17 @@ const features = [
 
             <!-- Visual/Image Side -->
             <div class="relative">
-                <div class="absolute inset-0 border-2 border-bronze dark:border-stone transform translate-x-4 translate-y-4 rounded-lg"></div>
-                <!-- Placeholder Image -->
-                <div class="relative rounded-lg overflow-hidden shadow-2xl aspect-[4/3] bg-gray-300 dark:bg-slate">
-                     <div class="w-full h-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2670&auto=format&fit=crop');"></div>
+                <div class="absolute -inset-4 bg-viking-red/10 rounded-xl transform rotate-3"></div>
+                <div class="absolute -inset-4 bg-bronze/10 rounded-xl transform -rotate-3"></div>
+                
+                <div class="relative rounded-xl overflow-hidden shadow-2xl aspect-[4/5] border-4 border-white dark:border-gray-800 max-h-[500px] w-auto mx-auto">
+                     <div class="w-full h-full bg-cover bg-center transition-transform hover:scale-105 duration-700" 
+                          style="background-image: url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2670&auto=format&fit=crop'); filter: sepia(0.2) contrast(1.1);"></div>
+                     
+                     <!-- Overlay Text -->
+                     <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/90 to-transparent p-8">
+                        <p class="text-white font-display text-2xl">Síla. Odvaha. Čest.</p>
+                     </div>
                 </div>
             </div>
         

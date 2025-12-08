@@ -1,12 +1,8 @@
 ---
 import { useTranslations } from '../i18n/utils';
 
-interface Props {
-  lang: 'cs' | 'en';
-}
-
-const { lang } = Astro.props;
-const t = useTranslations(lang);
+// Force CS
+const lang = 'cs';
 ---
 
 <section id="registration" class="py-24 bg-viking-red dark:bg-blood-red text-light-cream relative overflow-hidden">
@@ -15,30 +11,29 @@ const t = useTranslations(lang);
     
     <div class="container mx-auto px-4 relative z-10 text-center">
         <h2 class="text-4xl md:text-6xl font-display font-bold mb-8 drop-shadow-md">
-            {lang === 'cs' ? 'Registrace Závodníků' : 'Competitor Registration'}
+            Registrace Závodníků
         </h2>
         
-        <p class="text-xl md:text-2xl mb-12 max-w-2xl mx-auto font-medium">
-            {lang === 'cs' 
-               ? 'Připrav se na bojiště. Čas se krátí.' 
-               : 'Prepare for the battlefield. Time is running out.'}
+        <p class="text-xl md:text-2xl mb-12 max-w-2xl mx-auto font-medium opacity-90">
+            Připrav se na bojiště. Čas se krátí.
         </p>
         
         <div class="bg-white/10 backdrop-blur-md rounded-xl p-8 md:p-12 max-w-3xl mx-auto border border-white/20 shadow-2xl">
-           <p class="mb-4 text-lg">
-             {lang === 'cs' ? 'Registrace probíhá na emailu:' : 'Registration via email:'}
+           <p class="mb-4 text-lg font-bold">
+             Registrace probíhá přes email
            </p>
            
-           <a href="mailto:SlovanskeSiloveKlani@gmail.com" class="text-3xl md:text-5xl font-bold font-display hover:text-bronze transition-colors break-words">
-             SlovanskeSiloveKlani@gmail.com
+           <a href="mailto:SlovanskeSiloveKlani@gmail.com" class="inline-flex items-center gap-3 bg-white text-viking-red hover:bg-gray-100 px-8 py-4 rounded-lg text-xl md:text-2xl font-bold font-display transition-all transform hover:scale-105 shadow-xl mb-10">
+             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+             Poslat Registraci
            </a>
            
-           <div class="mt-8 text-left text-base md:text-lg bg-black/20 p-6 rounded-lg inline-block">
-               <strong class="block mb-2 text-fire-orange">{lang === 'cs' ? 'Do e-mailu uveďte:' : 'Please include in email:'}</strong>
-               <ul class="list-disc pl-5 space-y-1">
-                 <li>{lang === 'cs' ? 'Jméno a Příjmení' : 'Full Name'}</li>
-                 <li>{lang === 'cs' ? 'Váha' : 'Weight'}</li>
-                 <li>{lang === 'cs' ? 'Váhová kategorie' : 'Weight Category'}</li>
+           <div class="text-left text-base md:text-lg bg-black/20 p-6 rounded-lg inline-block w-full">
+               <strong class="block mb-3 text-white border-b border-white/20 pb-2">Do e-mailu uveďte:</strong>
+               <ul class="space-y-2">
+                 <li class="flex items-center gap-2"><svg class="w-5 h-5 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Jméno a Příjmení</li>
+                 <li class="flex items-center gap-2"><svg class="w-5 h-5 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Váha</li>
+                 <li class="flex items-center gap-2"><svg class="w-5 h-5 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Váhová kategorie</li>
                </ul>
            </div>
         </div>

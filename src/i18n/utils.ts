@@ -1,28 +1,15 @@
 import cs from './cs.json';
-import en from './en.json';
 
-export const languages = {
-    cs: 'cs',
-    en: 'en',
-};
-
-export const defaultLang = 'cs';
-
-export const ui = {
-    cs,
-    en,
-};
+const translations = { cs };
 
 export function getLangFromUrl(url: URL) {
-    const [, lang] = url.pathname.split('/');
-    if (lang in ui) return lang as keyof typeof ui;
-    return defaultLang;
+    return 'cs';
 }
 
-export function useTranslations(lang: keyof typeof ui) {
+export function useTranslations(lang: keyof typeof translations) {
     return function t(key: string) {
         const keys = key.split('.');
-        let value: any = ui[lang];
+        let value: any = translations['cs']; // Always fallback to CS
         for (const k of keys) {
             if (value && value[k]) {
                 value = value[k];
