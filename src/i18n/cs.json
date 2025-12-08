@@ -1,0 +1,23 @@
+{
+    "nav": {
+        "about": "O soutěži",
+        "categories": "Kategorie",
+        "registration": "Registrace",
+        "gallery": "Galerie",
+        "contact": "Kontakt"
+    },
+    "hero": {
+        "title": "Slovanské Silové Klání",
+        "subtitle": "4. ročník amatérské silové soutěže",
+        "date": "07.06.2025",
+        "time": "Sobota od 10:00",
+        "location": "Pustiměř, za Hasičskou zbrojnicí",
+        "cta": "Registrovat se"
+    },
+    "about": {
+        "heading": "O soutěži"
+    },
+    "footer": {
+        "rights": "Všechna práva vyhrazena."
+    }
+}

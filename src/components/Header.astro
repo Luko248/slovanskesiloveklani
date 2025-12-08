@@ -1,0 +1,98 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+import { useTranslations } from '../i18n/utils';
+
+// Hardcoded lang since we are enforcing CS only generally, but keeping prop for compatibility
+const { lang = 'cs' } = Astro.props;
+const t = useTranslations(lang);
+
+const navItems = [
+  { label: t('nav.about'), href: '#about' },
+  { label: t('nav.categories'), href: '#categories' },
+  { label: t('nav.registration'), href: '#registration' },
+  { label: t('nav.gallery'), href: '#gallery' },
+  { label: t('nav.contact'), href: '#footer' },
+];
+---
+
+<header class="fixed top-0 w-full z-50 transition-all duration-300 bg-parchment/95 dark:bg-deep-charcoal/95 backdrop-blur-md border-b border-bronze/30 dark:border-silver/20 shadow-lg">
+  <div class="container mx-auto px-4 py-3 grid grid-cols-2 md:grid-cols-3 items-center">
+    
+    <!-- Logo (Left) -->
+    <a href="/" class="group flex items-center gap-2 justify-start">
+      <svg class="w-8 h-8 text-viking-red group-hover:text-blood-red transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="font-display text-xl md:text-2xl font-bold text-viking-red dark:text-blood-red tracking-wide group-hover:text-fire-orange transition-colors duration-300 drop-shadow-sm hidden lg:inline">
+        Slovanské Silové Klání
+      </span>
+    </a>
+
+    <!-- Desktop Nav (Center) -->
+    <nav class="hidden md:flex items-center justify-center gap-6">
+      {navItems.map(item => (
+        <a href={item.href} class="font-display text-lg text-charcoal dark:text-light-cream hover:text-viking-red dark:hover:text-blood-red transition-colors relative group whitespace-nowrap">
+          {item.label}
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-viking-red dark:bg-blood-red transition-all duration-300 group-hover:w-full"></span>
+        </a>
+      ))}
+    </nav>
+
+    <!-- Controls (Right) -->
+    <div class="flex items-center gap-3 justify-end">
+      
+      <button id="add-to-calendar" class="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-black/5 dark:bg-white/10 hover:bg-viking-red hover:text-white dark:hover:bg-blood-red rounded-md text-sm font-semibold transition-all duration-300">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+        <span class="hidden lg:inline">Přidat do kalendáře</span>
+        <span class="lg:hidden">Kalendář</span>
+      </button>
+
+      <div class="w-px h-6 bg-gray-300 dark:bg-gray-700 mx-1"></div>
+      
+      <ThemeToggle />
+      
+      <!-- Mobile Menu Button (Hamburger) -->
+      <button id="mobile-menu-toggle" class="md:hidden p-2 text-charcoal dark:text-light-cream hover:text-viking-red transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu (Hidden by default) -->
+  <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-parchment dark:bg-deep-charcoal border-b border-bronze/30 shadow-xl flex flex-col p-4 gap-4">
+    {navItems.map(item => (
+      <a href={item.href} class="font-display text-lg text-center py-2 border-b border-black/5 dark:border-white/5 last:border-0 hover:text-viking-red dark:hover:text-blood-red mobile-link">
+        {item.label}
+      </a>
+    ))}
+    <button id="mobile-calendar-btn" class="w-full py-3 mt-2 bg-viking-red text-white rounded font-bold">
+        Přidat do kalendáře
+    </button>
+  </div>
+</header>
+
+<script>
+  import { downloadICS } from '../utils/calendar';
+
+  const btn = document.getElementById('mobile-menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const calendarBtn = document.getElementById('add-to-calendar');
+  const mobileCalendarBtn = document.getElementById('mobile-calendar-btn');
+  const mobileLinks = document.querySelectorAll('.mobile-link');
+
+  btn?.addEventListener('click', () => {
+    menu?.classList.toggle('hidden');
+  });
+
+  // Close mobile menu when clicking a link
+  mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+          menu?.classList.add('hidden');
+      });
+  });
+
+  calendarBtn?.addEventListener('click', downloadICS);
+  mobileCalendarBtn?.addEventListener('click', downloadICS);
+</script>

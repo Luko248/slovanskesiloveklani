@@ -1,0 +1,46 @@
+---
+import { useTranslations } from '../i18n/utils';
+
+interface Props {
+  lang: 'cs' | 'en';
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section id="registration" class="py-24 bg-viking-red dark:bg-blood-red text-light-cream relative overflow-hidden">
+    <!-- Decorative Pattern Overlay -->
+    <div class="absolute inset-0 opacity-10" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23000000\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+    
+    <div class="container mx-auto px-4 relative z-10 text-center">
+        <h2 class="text-4xl md:text-6xl font-display font-bold mb-8 drop-shadow-md">
+            {lang === 'cs' ? 'Registrace Závodníků' : 'Competitor Registration'}
+        </h2>
+        
+        <p class="text-xl md:text-2xl mb-12 max-w-2xl mx-auto font-medium">
+            {lang === 'cs' 
+               ? 'Připrav se na bojiště. Čas se krátí.' 
+               : 'Prepare for the battlefield. Time is running out.'}
+        </p>
+        
+        <div class="bg-white/10 backdrop-blur-md rounded-xl p-8 md:p-12 max-w-3xl mx-auto border border-white/20 shadow-2xl">
+           <p class="mb-4 text-lg">
+             {lang === 'cs' ? 'Registrace probíhá na emailu:' : 'Registration via email:'}
+           </p>
+           
+           <a href="mailto:SlovanskeSiloveKlani@gmail.com" class="text-3xl md:text-5xl font-bold font-display hover:text-bronze transition-colors break-words">
+             SlovanskeSiloveKlani@gmail.com
+           </a>
+           
+           <div class="mt-8 text-left text-base md:text-lg bg-black/20 p-6 rounded-lg inline-block">
+               <strong class="block mb-2 text-fire-orange">{lang === 'cs' ? 'Do e-mailu uveďte:' : 'Please include in email:'}</strong>
+               <ul class="list-disc pl-5 space-y-1">
+                 <li>{lang === 'cs' ? 'Jméno a Příjmení' : 'Full Name'}</li>
+                 <li>{lang === 'cs' ? 'Váha' : 'Weight'}</li>
+                 <li>{lang === 'cs' ? 'Váhová kategorie' : 'Weight Category'}</li>
+               </ul>
+           </div>
+        </div>
+    </div>
+</section>
