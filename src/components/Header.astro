@@ -21,47 +21,82 @@ const navItems = [
     <!-- Logo (Left) -->
     <a href="/" class="group flex items-center gap-2 justify-start">
       <svg class="w-10 h-10 text-viking-red group-hover:text-blood-red transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
+         <!-- Stylized Axe/Weapon Icon -->
+         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" class="opacity-0" /> <!-- Hidden spacer if needed, replacing with real path -->
+         <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75" />
+         <!-- Actually, let's use a crossed axe/barbell style for "Gym/Slavic" -->
+         <path d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" stroke-linejoin="round" class="hidden"/> <!-- Lighting bolt fallback -->
+         <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.15v4.25c0 1.094.787 2.036 1.872 2.18 2.087.277 4.216.42 6.378.42s4.291-.143 6.378-.42c1.085-.144 1.872-1.086 1.872-2.18v-4.25m-16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081.768-2.015 1.837-2.175a48.114 48.114 0 013.413-.387m7.5 0V5.25a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v2.818c0 .597.237 1.17.659 1.591l6.499 6.499c.407.408.96.636 1.536.636h5.418m0 0a2.92 2.92 0 012.082-.884m-8.514-6.067c1.374-.153 2.766-.23 4.168-.23 1.402 0 2.794.077 4.168.23m-4.168-.23v13.5" class="hidden"/>
+
+         <!-- Proper Double Axe icon -->
+         <path stroke-linecap="round" stroke-linejoin="round" d="M12 2L12 22M12 6L4 4C3 3.5 3 2.5 4 2L12 4M12 6L20 4C21 3.5 21 2.5 20 2L12 4M12 16L4 18C3 18.5 3 19.5 4 20L12 18M12 16L20 18C21 18.5 21 19.5 20 20L12 18" />
+         <!-- Wait that's geometric. Let's do a simple Hammer/Axe shape -->
+         <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 7.5V6.108c0-1.135.845-2.098 1.976-2.192.373-.03.748-.057 1.125-.08C12.487 3.76 13.631 4 14.625 4c1.135 0 2.098.845 2.192 1.976.03.373.057.748.08 1.125A2.247 2.247 0 0114.625 9.25H9.25a2.25 2.25 0 01-2.25-2.25v-.62zM9 9l.065 1.41a3.001 3.001 0 002.04 2.68c.325.1.662.16 1.006.16h.638c.344 0 .681-.06 1.006-.16a3.001 3.001 0 002.04-2.68L15.75 9M12 13.25v7.5" />
       </svg>
       <span class="font-display text-xl md:text-2xl font-bold text-viking-red dark:text-blood-red tracking-wide group-hover:text-fire-orange transition-colors duration-300 drop-shadow-sm hidden lg:inline">
         Slovanské Silové Klání
       </span>
     </a>
 
-    <!-- Desktop Nav (Center) -->
+    <!-- Navigation (Hidden on mobile) -->
     <nav class="hidden md:flex items-center justify-center gap-6">
       {navItems.map(item => (
-        <a href={item.href} class="font-display text-lg text-charcoal dark:text-light-cream hover:text-viking-red dark:hover:text-blood-red transition-colors relative group whitespace-nowrap">
+        <a 
+          href={item.href} 
+          class="font-display text-lg text-charcoal dark:text-light-cream hover:text-viking-red dark:hover:text-blood-red transition-colors relative group whitespace-nowrap"
+        >
           {item.label}
           <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-viking-red dark:bg-blood-red transition-all duration-300 group-hover:w-full"></span>
         </a>
       ))}
     </nav>
 
-    <!-- Controls (Right) -->
-    <div class="flex items-center gap-3 justify-end">
-      
-      <button id="add-to-calendar" class="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-black/5 dark:bg-white/10 hover:bg-viking-red hover:text-white dark:hover:bg-blood-red rounded-md text-sm font-semibold transition-all duration-300">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-        <span class="hidden lg:inline">Přidat do kalendáře</span>
-        <span class="lg:hidden">Kalendář</span>
-      </button>
+    <!-- Right Actions -->
+    <div class="flex items-center gap-4 justify-end">
+       <!-- Calendar Button -->
+       <button 
+         id="add-to-calendar-btn"
+         class="hidden md:flex items-center gap-2 bg-viking-red hover:bg-fire-orange text-white px-4 py-2 rounded-md transition-all text-sm font-bold shadow-md cursor-pointer"
+         onclick="window.addToCalendar()"
+       >
+         <!-- Heroicon: Calendar -->
+         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
+           <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z" />
+         </svg>
+         <span>Do Kalendáře</span>
+       </button>
 
-      <div class="w-px h-6 bg-gray-300 dark:bg-gray-700 mx-1"></div>
-      
+      <!-- Theme Toggle -->
       <ThemeToggle />
-      
-      <!-- Mobile Menu Button (Hamburger) -->
-      <button id="mobile-menu-toggle" class="md:hidden p-2 text-charcoal dark:text-light-cream hover:text-viking-red transition-colors">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+
+      <!-- Mobile Menu Button -->
+      <button 
+        id="mobile-menu-btn" 
+        class="md:hidden text-charcoal dark:text-light-cream hover:text-viking-red transition-colors p-2"
+        aria-label="Menu"
+      >
+        <!-- Heroicon: Bars 3 -->
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
         </svg>
       </button>
     </div>
   </div>
 
-  <!-- Mobile Menu (Hidden by default) -->
-  <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-parchment dark:bg-deep-charcoal border-b border-bronze/30 shadow-xl flex flex-col p-4 gap-4">
+  <!-- Mobile Menu Overlay -->
+  <div 
+    id="mobile-menu" 
+    class="fixed inset-0 bg-parchment dark:bg-deep-charcoal z-40 transform translate-x-full transition-transform duration-300 flex flex-col pt-24 px-6 md:hidden"
+  >
+     <button 
+        id="close-menu-btn"
+        class="absolute top-6 right-6 text-charcoal dark:text-light-cream hover:text-viking-red p-2"
+     >
+       <!-- Heroicon: X Mark -->
+       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8">
+         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+       </svg>
+     </button>
     {navItems.map(item => (
       <a href={item.href} class="font-display text-lg text-center py-2 border-b border-black/5 dark:border-white/5 last:border-0 hover:text-viking-red dark:hover:text-blood-red mobile-link">
         {item.label}

@@ -5,7 +5,7 @@ import { useTranslations } from '../i18n/utils';
 const lang = 'cs';
 ---
 
-<section id="registration" class="py-24 bg-viking-red dark:bg-blood-red text-light-cream relative overflow-hidden">
+<section id="registration" class="py-24 relative overflow-hidden bg-charcoal text-white scroll-mt-24">
     <!-- Decorative Pattern Overlay -->
     <div class="absolute inset-0 opacity-10" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23000000\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
     
@@ -14,8 +14,12 @@ const lang = 'cs';
             Registrace Závodníků
         </h2>
         
-        <p class="text-xl md:text-2xl mb-12 max-w-2xl mx-auto font-medium opacity-90">
-            Připrav se na bojiště. Čas se krátí.
+        <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto font-medium opacity-90">
+            Připrav se na bojiště. Čas se krátí. <br/>
+            <span class="block mt-4 text-lg md:text-xl italic text-white/80">
+                "Nezáleží na tom, kolik zvedneš teď. Záleží na tom, zda máš odvahu zkusit zvednout víc, než si myslíš, že dokážeš. 
+                Překonej sám sebe. Staň se legendou."
+            </span>
         </p>
         
         <div class="bg-white/10 backdrop-blur-md rounded-xl p-8 md:p-12 max-w-3xl mx-auto border border-white/20 shadow-2xl">
@@ -23,8 +27,11 @@ const lang = 'cs';
              Registrace probíhá přes email
            </p>
            
-           <a href="mailto:SlovanskeSiloveKlani@gmail.com" class="inline-flex items-center gap-3 bg-white text-viking-red hover:bg-gray-100 px-8 py-4 rounded-lg text-xl md:text-2xl font-bold font-display transition-all transform hover:scale-105 shadow-xl mb-10">
-             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+           <a href="mailto:SlovanskeSiloveKlani@gmail.com?subject=Registrace%20SSK%202026&body=Jméno%20a%20Příjmení:%0D%0AVáha:%0D%0AVáhová%20kategorie:%0D%0A" class="inline-flex items-center gap-3 bg-white text-viking-red hover:bg-gray-100 px-8 py-4 rounded-lg text-xl md:text-2xl font-bold font-display transition-all transform hover:scale-105 shadow-xl mb-10">
+             <!-- Heroicon: Envelope -->
+             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8">
+               <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+             </svg>
              Poslat Registraci
            </a>
            

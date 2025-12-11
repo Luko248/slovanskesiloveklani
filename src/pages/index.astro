@@ -6,6 +6,7 @@ import EventInfo from '../components/EventInfo.astro';
 import Categories from '../components/Categories.astro';
 import Gallery from '../components/Gallery.astro';
 import Registration from '../components/Registration.astro';
+import Partners from '../components/Partners.astro';
 import Footer from '../components/Footer.astro';
 ---
 
@@ -16,7 +17,12 @@ import Footer from '../components/Footer.astro';
     <EventInfo lang="cs" />
     <Categories lang="cs" />
     <Gallery lang="cs" />
-    <Registration lang="cs" />
+    <section id="registration">
+        <Registration />
+    </section>
+    <section id="partners-section">
+        <Partners />
+    </section>
   </main>
-  <Footer lang="cs" />
+  <Footer />
 </BaseLayout>
