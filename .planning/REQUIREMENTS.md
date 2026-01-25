@@ -673,9 +673,9 @@ This refresh is successful when:
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| FR-001: Fix Critical Bugs | Phase 1 | Pending |
-| FR-008: Remove Light Theme Remnants | Phase 1 | Pending |
-| CR-001: Event Information Consistency | Phase 1 | Pending |
+| FR-001: Fix Critical Bugs | Phase 1 | Complete |
+| FR-008: Remove Light Theme Remnants | Phase 1 | Complete |
+| CR-001: Event Information Consistency | Phase 1 | In Progress (gaps) |
 | FR-005: Visual Consistency (Icons & Buttons) | Phase 2 | Pending |
 | FR-006: MedievalSharp Text-Only Logo | Phase 2 | Pending |
 | CR-003: Czech Language Content | Phase 2 | Pending |
