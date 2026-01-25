@@ -8,21 +8,33 @@ import Gallery from '../components/Gallery.astro';
 import Registration from '../components/Registration.astro';
 import Partners from '../components/Partners.astro';
 import Footer from '../components/Footer.astro';
+import SectionSeparator from '../components/SectionSeparator.astro';
 ---
 
 <BaseLayout title="Slovanské Silové Klání 2025" lang="cs">
   <Header lang="cs" />
   <main>
     <Hero lang="cs" />
+    <SectionSeparator />
+    
     <EventInfo lang="cs" />
+    <SectionSeparator />
+    
     <Categories lang="cs" />
+    <SectionSeparator />
+    
     <Gallery lang="cs" />
+    <SectionSeparator />
+    
     <section id="registration">
         <Registration />
     </section>
+    <SectionSeparator />
+    
     <section id="partners-section">
         <Partners />
     </section>
+    <SectionSeparator />
   </main>
   <Footer />
 </BaseLayout>

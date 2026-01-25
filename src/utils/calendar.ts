@@ -2,9 +2,9 @@ export const generateICS = () => {
     const event = {
         title: "Slovanské Silové Klání 2026",
         description: "5. ročník amatérské silové soutěže / 5th Annual Amateur Strongman Competition",
-        startTime: "20260607T080000Z", // UTC time (10:00 CEST = 08:00 UTC)
-        endTime: "20260607T160000Z", // Estimated end time
-        location: "Pustiměřské Prusy, hasičská zbrojnice",
+        startTime: "20260613T080000Z", // 13.06.2026 10:00 CEST
+        endTime: "20260613T160000Z", // Estimated end time
+        location: "Za Hasičskou Zbrojnicí, Pustiměř",
     };
 
     return `BEGIN:VCALENDAR

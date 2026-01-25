@@ -15,7 +15,7 @@ const navItems = [
 ];
 ---
 
-<header class="fixed top-0 w-full z-50 transition-all duration-300 bg-parchment/95 dark:bg-deep-charcoal/95 backdrop-blur-md border-b border-bronze/30 dark:border-silver/20 shadow-lg">
+<header class="fixed top-0 w-full z-50 transition-all duration-300 bg-charcoal/95 backdrop-blur-md border-b border-viking-red/20 shadow-lg">
   <div class="container mx-auto px-4 py-3 grid grid-cols-2 md:grid-cols-3 items-center">
     
     <!-- Logo (Left) -->
@@ -43,15 +43,15 @@ const navItems = [
       {navItems.map(item => (
         <a 
           href={item.href} 
-          class="font-display text-lg text-charcoal dark:text-light-cream hover:text-viking-red dark:hover:text-blood-red transition-colors relative group whitespace-nowrap"
+          class="font-display text-lg text-light-cream hover:text-viking-red transition-colors relative group whitespace-nowrap"
         >
           {item.label}
-          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-viking-red dark:bg-blood-red transition-all duration-300 group-hover:w-full"></span>
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-viking-red transition-all duration-300 group-hover:w-full"></span>
         </a>
       ))}
     </nav>
 
-    <!-- Right Actions -->
+     <!-- Right Actions -->
     <div class="flex items-center gap-4 justify-end">
        <!-- Calendar Button -->
        <button 
@@ -65,9 +65,6 @@ const navItems = [
          </svg>
          <span>Do Kalendáře</span>
        </button>
-
-      <!-- Theme Toggle -->
-      <ThemeToggle />
 
       <!-- Mobile Menu Button -->
       <button 
@@ -86,11 +83,11 @@ const navItems = [
   <!-- Mobile Menu Overlay -->
   <div 
     id="mobile-menu" 
-    class="fixed inset-0 bg-parchment dark:bg-deep-charcoal z-40 transform translate-x-full transition-transform duration-300 flex flex-col pt-24 px-6 md:hidden"
+    class="fixed inset-0 bg-deep-charcoal z-40 transform translate-x-full transition-transform duration-300 flex flex-col pt-24 px-6 md:hidden"
   >
      <button 
         id="close-menu-btn"
-        class="absolute top-6 right-6 text-charcoal dark:text-light-cream hover:text-viking-red p-2"
+        class="absolute top-6 right-6 text-light-cream hover:text-viking-red p-2"
      >
        <!-- Heroicon: X Mark -->
        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8">

@@ -25,9 +25,10 @@
     font-family: var(--font-body);
   }
 
+  /* Base defaults - Enforce Dark Mode */
   body {
-    background-color: var(--color-parchment);
-    color: var(--color-charcoal);
+    background-color: var(--color-deep-charcoal);
+    color: var(--color-light-cream);
   }
 
   h1,
@@ -37,11 +38,6 @@
   h5,
   h6 {
     font-family: var(--font-display);
-  }
-
-  .dark body {
-    background-color: var(--color-deep-charcoal);
-    color: var(--color-light-cream);
   }
 }
 
