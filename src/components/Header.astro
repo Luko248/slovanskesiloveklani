@@ -107,21 +107,26 @@ const navItems = [
 <script>
   import { downloadICS } from '../utils/calendar';
 
-  const btn = document.getElementById('mobile-menu-toggle');
+  const btn = document.getElementById('mobile-menu-btn');
+  const closeBtn = document.getElementById('close-menu-btn');
   const menu = document.getElementById('mobile-menu');
-  const calendarBtn = document.getElementById('add-to-calendar');
+  const calendarBtn = document.getElementById('add-to-calendar-btn');
   const mobileCalendarBtn = document.getElementById('mobile-calendar-btn');
   const mobileLinks = document.querySelectorAll('.mobile-link');
 
   btn?.addEventListener('click', () => {
-    menu?.classList.toggle('hidden');
+    menu?.classList.toggle('translate-x-full');
+  });
+
+  closeBtn?.addEventListener('click', () => {
+    menu?.classList.add('translate-x-full');
   });
 
   // Close mobile menu when clicking a link
   mobileLinks.forEach(link => {
-      link.addEventListener('click', () => {
-          menu?.classList.add('hidden');
-      });
+    link.addEventListener('click', () => {
+      menu?.classList.add('translate-x-full');
+    });
   });
 
   calendarBtn?.addEventListener('click', downloadICS);
