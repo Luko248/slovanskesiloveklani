@@ -17,19 +17,19 @@ const features = [
             <div class="space-y-8">
                 <div class="inline-flex items-center gap-4">
                     <span class="h-1 w-12 bg-viking-red"></span>
-                    <h2 class="text-4xl md:text-5xl font-display font-bold text-charcoal dark:text-light-cream">
+                    <h2 class="text-4xl md:text-5xl font-display font-bold text-light-cream">
                         O soutěži
                     </h2>
                 </div>
                 
-                <div class="prose prose-lg dark:prose-invert">
-                    <p class="text-xl leading-relaxed text-charcoal dark:text-gray-300 font-medium">
-                        Slovanské Silové Klání je amatérská silová soutěž zaměřená na komplexní sílu celého těla. 
+                <div class="prose prose-lg prose-invert">
+                    <p class="text-xl leading-relaxed text-gray-300 font-medium">
+                        Slovanské Silové Klání je amatérská silová soutěž zaměřená na komplexní sílu celého těla.
                         Soutěž je určena pro běžné cvičence, kteří chtějí ukázat svou funkční sílu v reálných podmínkách.
                     </p>
-                    <p class="text-lg leading-relaxed text-gray-600 dark:text-gray-400">
-                        Na rozdíl od klasických posilovacích soutěží se zde nezvedají dokonale vyvážené činky, 
-                        ale pouze to, co nám nadělila Matka Příroda - kameny, klády, železo. 
+                    <p class="text-lg leading-relaxed text-gray-400">
+                        Na rozdíl od klasických posilovacích soutěží se zde nezvedají dokonale vyvážené činky,
+                        ale pouze to, co nám nadělila Matka Příroda - kameny, klády, železo.
                         Disciplíny testují sílu, rychlost, výbušnost a vytrvalost.
                     </p>
                     <p class="text-lg leading-relaxed text-viking-red font-bold italic">
@@ -39,11 +39,11 @@ const features = [
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
                     {features.map(feature => (
-                        <div class="flex items-center gap-3 p-3 bg-white/50 dark:bg-black/20 rounded-lg border border-bronze/20">
+                        <div class="flex items-center gap-3 p-3 bg-black/20 rounded-lg border border-bronze/20">
                              <div class="text-viking-red">
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                              </div>
-                             <span class="font-semibold text-charcoal dark:text-gray-200">{feature}</span>
+                             <span class="font-semibold text-gray-200">{feature}</span>
                         </div>
                     ))}
                 </div>
@@ -54,7 +54,7 @@ const features = [
                 <div class="absolute -inset-4 bg-viking-red/10 rounded-xl transform rotate-3"></div>
                 <div class="absolute -inset-4 bg-bronze/10 rounded-xl transform -rotate-3"></div>
                 
-                <div class="relative rounded-xl overflow-hidden shadow-2xl aspect-[4/5] border-4 border-white dark:border-gray-800 max-h-[500px] w-auto mx-auto">
+                <div class="relative rounded-xl overflow-hidden shadow-2xl aspect-[4/5] border-4 border-gray-800 max-h-[500px] w-auto mx-auto">
                      <div class="w-full h-full bg-cover bg-center transition-transform hover:scale-105 duration-700" 
                           style="background-image: url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2670&auto=format&fit=crop'); filter: sepia(0.2) contrast(1.1);"></div>
                      
