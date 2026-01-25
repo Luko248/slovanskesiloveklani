@@ -1,5 +1,4 @@
 ---
-import ThemeToggle from './ThemeToggle.astro';
 import { useTranslations } from '../i18n/utils';
 
 // Hardcoded lang since we are enforcing CS only generally, but keeping prop for compatibility
@@ -33,7 +32,7 @@ const navItems = [
          <!-- Wait that's geometric. Let's do a simple Hammer/Axe shape -->
          <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 7.5V6.108c0-1.135.845-2.098 1.976-2.192.373-.03.748-.057 1.125-.08C12.487 3.76 13.631 4 14.625 4c1.135 0 2.098.845 2.192 1.976.03.373.057.748.08 1.125A2.247 2.247 0 0114.625 9.25H9.25a2.25 2.25 0 01-2.25-2.25v-.62zM9 9l.065 1.41a3.001 3.001 0 002.04 2.68c.325.1.662.16 1.006.16h.638c.344 0 .681-.06 1.006-.16a3.001 3.001 0 002.04-2.68L15.75 9M12 13.25v7.5" />
       </svg>
-      <span class="font-display text-xl md:text-2xl font-bold text-viking-red dark:text-blood-red tracking-wide group-hover:text-fire-orange transition-colors duration-300 drop-shadow-sm hidden lg:inline">
+      <span class="font-display text-xl md:text-2xl font-bold text-viking-red tracking-wide group-hover:text-fire-orange transition-colors duration-300 drop-shadow-sm hidden lg:inline">
         Slovanské Silové Klání
       </span>
     </a>
@@ -67,9 +66,9 @@ const navItems = [
        </button>
 
       <!-- Mobile Menu Button -->
-      <button 
-        id="mobile-menu-btn" 
-        class="md:hidden text-charcoal dark:text-light-cream hover:text-viking-red transition-colors p-2"
+      <button
+        id="mobile-menu-btn"
+        class="md:hidden text-light-cream hover:text-viking-red transition-colors p-2"
         aria-label="Menu"
       >
         <!-- Heroicon: Bars 3 -->
@@ -95,7 +94,7 @@ const navItems = [
        </svg>
      </button>
     {navItems.map(item => (
-      <a href={item.href} class="font-display text-lg text-center py-2 border-b border-black/5 dark:border-white/5 last:border-0 hover:text-viking-red dark:hover:text-blood-red mobile-link">
+      <a href={item.href} class="font-display text-lg text-center py-2 border-b border-white/5 last:border-0 hover:text-viking-red mobile-link">
         {item.label}
       </a>
     ))}

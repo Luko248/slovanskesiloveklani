@@ -1,10 +1,12 @@
+import { EVENT_CONFIG, getICSStartTime, getICSEndTime, getFullLocation } from './eventConfig';
+
 export const generateICS = () => {
     const event = {
-        title: "Slovanské Silové Klání 2026",
-        description: "5. ročník amatérské silové soutěže / 5th Annual Amateur Strongman Competition",
-        startTime: "20260613T080000Z", // 13.06.2026 10:00 CEST
-        endTime: "20260613T160000Z", // Estimated end time
-        location: "Za Hasičskou Zbrojnicí, Pustiměř",
+        title: EVENT_CONFIG.title,
+        description: `${EVENT_CONFIG.edition} amatérské silové soutěže / 5th Annual Amateur Strongman Competition`,
+        startTime: getICSStartTime(),
+        endTime: getICSEndTime(),
+        location: getFullLocation(),
     };
 
     return `BEGIN:VCALENDAR
@@ -27,7 +29,7 @@ export const downloadICS = () => {
     const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
     const link = document.createElement('a');
     link.href = window.URL.createObjectURL(blob);
-    link.setAttribute('download', 'slovanske-silove-klani-2025.ics');
+    link.setAttribute('download', `slovanske-silove-klani-${EVENT_CONFIG.date.year}.ics`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
