@@ -31,10 +31,12 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. Calendar download filename shows 2026 year
   4. Site displays exclusively in dark theme with no light theme artifacts
   5. Event configuration is imported from single source of truth in all components
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 01-01: TBD (plan not created yet)
+- [ ] 01-01-PLAN.md - Create eventConfig.ts and fix calendar export
+- [ ] 01-02-PLAN.md - Fix mobile menu and remove ThemeToggle import
+- [ ] 01-03-PLAN.md - Centralize event data in components and clean dark: variants
 
 ### Phase 2: CSS Infrastructure
 **Goal**: Establish visual consistency and reusable CSS patterns
@@ -117,11 +119,11 @@ Plans:
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
+Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation Fixes | 0/TBD | Not started | - |
+| 1. Foundation Fixes | 0/3 | Planned | - |
 | 2. CSS Infrastructure | 0/TBD | Not started | - |
 | 3. New Features | 0/TBD | Not started | - |
 | 4. Accessibility Compliance | 0/TBD | Not started | - |
