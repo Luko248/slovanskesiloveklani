@@ -2,7 +2,6 @@
 import { useTranslations } from "../i18n/utils";
 import Button from "./ui/Button.astro";
 
-// Hardcoded lang since we are enforcing CS only generally, but keeping prop for compatibility
 const { lang = "cs" } = Astro.props;
 const t = useTranslations(lang);
 
@@ -11,7 +10,7 @@ const navItems = [
   { label: t("nav.categories"), href: "#categories" },
   { label: t("nav.registration"), href: "#registration" },
   { label: t("nav.gallery"), href: "#gallery" },
-  { label: t("nav.contact"), href: "#footer" },
+  { label: t("nav.contact"), href: "#contact" },
 ];
 ---
 
@@ -19,7 +18,7 @@ const navItems = [
   class="fixed top-0 w-full z-50 transition-all duration-300 bg-black/90 backdrop-blur-md border-b border-viking-green/20 shadow-lg h-[72px] flex items-center"
 >
   <div class="container mx-auto px-4 flex items-center justify-between h-full">
-    <!-- Logo (Left) -->
+    <!-- Logo -->
     <a href="/" class="group flex items-center justify-start shrink-0">
       <span
         class="font-display text-xl font-bold text-light-cream tracking-widest group-hover:text-viking-gold transition-colors duration-300 drop-shadow-sm uppercase"
@@ -29,9 +28,9 @@ const navItems = [
       </span>
     </a>
 
-    <!-- Navigation (Center) -->
+    <!-- Desktop Navigation -->
     <nav
-      class="hidden md:flex items-center justify-center gap-6 absolute left-1/2 transform -translate-x-1/2"
+      class="hidden lg:flex items-center justify-center gap-6 absolute left-1/2 transform -translate-x-1/2"
     >
       {
         navItems.map((item) => (
@@ -56,7 +55,6 @@ const navItems = [
         class="flex gap-2 h-9"
         onclick="window.addToCalendar()"
       >
-        <!-- Heroicon: Calendar -->
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -74,26 +72,16 @@ const navItems = [
         <span class="hidden md:inline">Do Kalendáře</span>
       </Button>
 
-      <!-- Mobile Menu Button -->
+      <!-- Burger Button with animation -->
       <button
         id="mobile-menu-btn"
-        class="md:hidden text-light-cream hover:text-viking-green transition-colors p-2"
+        class="burger lg:hidden relative w-10 h-10 flex items-center justify-center"
         aria-label="Menu"
+        aria-expanded="false"
       >
-        <!-- Heroicon: Bars 3 -->
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          class="size-8"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
-        </svg>
+        <span class="burger-line burger-line--top"></span>
+        <span class="burger-line burger-line--middle"></span>
+        <span class="burger-line burger-line--bottom"></span>
       </button>
     </div>
   </div>
@@ -101,82 +89,138 @@ const navItems = [
   <!-- Mobile Menu Overlay -->
   <div
     id="mobile-menu"
-    class="fixed top-[72px] left-0 w-full h-[calc(100dvh-72px)] bg-deep-charcoal z-40 transform translate-x-full transition-transform duration-300 flex flex-col p-6 border-t border-viking-green/20 overflow-y-auto"
+    class="mobile-menu fixed top-[72px] left-0 w-full h-[calc(100dvh-72px)] bg-deep-charcoal/95 backdrop-blur-xl z-40 flex flex-col overflow-y-auto border-t border-viking-green/20"
   >
-    <div class="flex justify-end mb-4">
-      <button
-        id="close-menu-btn"
-        class="text-light-cream hover:text-viking-green p-2 flex items-center gap-2"
-      >
-        <span class="text-sm font-bold uppercase tracking-wider">Zavřít</span>
-        <!-- Heroicon: X Mark -->
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          class="size-6"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M6 18 18 6M6 6l12 12"></path>
-        </svg>
-      </button>
-    </div>
-
-    <div class="flex flex-col gap-4 items-center justify-center flex-1">
+    <nav class="flex flex-col items-center justify-center flex-1 gap-2 px-6 py-8">
       {
-        navItems.map((item) => (
+        navItems.map((item, idx) => (
           <a
             href={item.href}
-            class="font-display text-2xl font-bold text-center py-3 text-light-cream hover:text-viking-green transition-colors mobile-link w-full border-b border-white/5"
+            class="mobile-link font-display text-2xl font-bold text-center py-4 text-light-cream hover:text-viking-green transition-colors w-full border-b border-white/5"
+            style={`--delay: ${idx * 0.05}s`}
           >
             {item.label}
           </a>
         ))
       }
-      <div class="mt-8 w-full">
+      <div class="mt-8 w-full max-w-xs mx-auto">
         <Button
           id="mobile-calendar-btn"
           variant="secondary"
           size="default"
-          class="w-full h-12"
+          class="w-full h-12 mobile-link"
+          style="--delay: 0.25s"
         >
           Přidat do kalendáře
         </Button>
       </div>
-    </div>
+    </nav>
   </div>
 </header>
+
+<style>
+  /* ── Burger lines ── */
+  .burger-line {
+    position: absolute;
+    inline-size: 1.5rem;
+    block-size: 2px;
+    background-color: var(--color-light-cream);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  .burger-line--top {
+    transform: translateY(-7px);
+  }
+
+  .burger-line--middle {
+    transform: translateY(0);
+  }
+
+  .burger-line--bottom {
+    transform: translateY(7px);
+  }
+
+  /* Active state — X shape */
+  .burger.is-active .burger-line--top {
+    transform: translateY(0) rotate(45deg);
+  }
+
+  .burger.is-active .burger-line--middle {
+    opacity: 0;
+  }
+
+  .burger.is-active .burger-line--bottom {
+    transform: translateY(0) rotate(-45deg);
+  }
+
+  /* ── Mobile menu ── */
+  .mobile-menu {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  .mobile-menu.is-open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Staggered link entrance */
+  .mobile-menu .mobile-link {
+    opacity: 0;
+    transform: translateY(1rem);
+    transition: opacity 0.3s ease, transform 0.3s ease, color 0.3s ease;
+    transition-delay: var(--delay, 0s);
+  }
+
+  .mobile-menu.is-open .mobile-link {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
 
 <script>
   import { downloadICS } from "../utils/calendar";
 
-  const btn = document.getElementById("mobile-menu-btn");
-  const closeBtn = document.getElementById("close-menu-btn");
+  const burger = document.getElementById("mobile-menu-btn");
   const menu = document.getElementById("mobile-menu");
   const calendarBtn = document.getElementById("add-to-calendar-btn");
   const mobileCalendarBtn = document.getElementById("mobile-calendar-btn");
   const mobileLinks = document.querySelectorAll(".mobile-link");
 
-  function toggleMenu() {
-    menu?.classList.toggle("translate-x-full");
-    document.body.classList.toggle("overflow-hidden");
+  function openMenu() {
+    burger?.classList.add("is-active");
+    burger?.setAttribute("aria-expanded", "true");
+    menu?.classList.add("is-open");
+    document.body.style.overflow = "hidden";
   }
 
   function closeMenu() {
-    menu?.classList.add("translate-x-full");
-    document.body.classList.remove("overflow-hidden");
+    burger?.classList.remove("is-active");
+    burger?.setAttribute("aria-expanded", "false");
+    menu?.classList.remove("is-open");
+    document.body.style.overflow = "";
   }
 
-  btn?.addEventListener("click", toggleMenu);
-  closeBtn?.addEventListener("click", closeMenu);
+  function toggleMenu() {
+    if (menu?.classList.contains("is-open")) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  }
 
-  // Close mobile menu when clicking a link
+  burger?.addEventListener("click", toggleMenu);
+
   mobileLinks.forEach((link) => {
     link.addEventListener("click", closeMenu);
+  });
+
+  // Close on Escape key
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && menu?.classList.contains("is-open")) {
+      closeMenu();
+    }
   });
 
   calendarBtn?.addEventListener("click", downloadICS);
