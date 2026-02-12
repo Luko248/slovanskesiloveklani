@@ -4,9 +4,11 @@ import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
 import EventInfo from '../components/EventInfo.astro';
 import Categories from '../components/Categories.astro';
+import Attractions from '../components/Attractions.astro';
 import Gallery from '../components/Gallery.astro';
 import Registration from '../components/Registration.astro';
 import Partners from '../components/Partners.astro';
+import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
 import SectionSeparator from '../components/SectionSeparator.astro';
 ---
@@ -16,17 +18,21 @@ import SectionSeparator from '../components/SectionSeparator.astro';
   <main>
     <Hero lang="cs" />
     <SectionSeparator />
-    
+
     <EventInfo lang="cs" />
-    
+
     <Categories lang="cs" />
+
+    <Attractions />
     <SectionSeparator />
-    
-    <Gallery lang="cs" />
-    
+
     <Registration />
 
+    <Gallery lang="cs" />
+
     <Partners />
+
+    <Contact />
     <SectionSeparator />
   </main>
   <Footer />

@@ -14,18 +14,18 @@ const features = [
     <!-- Section Header -->
     <div class="text-center mb-16">
       <div class="inline-flex items-center gap-4 mb-6">
-        <span class="h-1 w-12 bg-viking-gold"></span>
+        <span class="h-1 w-12 bg-viking-green"></span>
         <h2
           class="text-4xl md:text-5xl font-display font-bold text-light-cream"
         >
           O soutěži
         </h2>
-        <span class="h-1 w-12 bg-viking-gold"></span>
+        <span class="h-1 w-12 bg-viking-green"></span>
       </div>
     </div>
 
     <!-- Text Content -->
-    <div class="space-y-8">
+    <div class="space-y-8 mt-8">
       <div class="prose prose-lg prose-invert max-w-none text-center">
         <p class="text-xl leading-relaxed text-gray-300 font-medium">
           Slovanské Silové Klání je amatérská silová soutěž zaměřená na
@@ -44,7 +44,7 @@ const features = [
       </div>
 
       <div
-        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-6 mt-12"
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-6 mt-12 sm:grid-rows-[repeat(3,1fr)] lg:grid-rows-[repeat(2,1fr)]"
       >
         {
           features.map((feature) => (

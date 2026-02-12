@@ -1,6 +1,5 @@
 ---
 import { useTranslations } from "../i18n/utils";
-import Button from "./ui/Button.astro";
 
 // Force CS
 const lang = "cs";
@@ -19,13 +18,13 @@ const t = useTranslations(lang);
   </div>
 
   <div class="container mx-auto px-4 py-20 relative z-10">
-    <div class="grid lg:grid-cols-3 gap-16 items-start">
+    <div class="grid md:grid-cols-2 gap-16 items-start">
 
-      <!-- Branding -->
+      <!-- Branding + Social -->
       <div class="space-y-6">
         <a href="/" class="block group">
           <h3
-            class="text-3xl font-display font-bold text-viking-gold leading-tight tracking-wide group-hover:text-viking-green transition-colors duration-300"
+            class="text-3xl font-display font-bold text-light-cream leading-tight tracking-wide group-hover:text-viking-gold transition-colors duration-300"
           >
             Slovanské<br />Silové Klání
           </h3>
@@ -52,98 +51,49 @@ const t = useTranslations(lang);
           </svg>
           <span class="font-bold uppercase tracking-wide text-sm">Facebook Událost</span>
         </a>
-      </div>
 
-      <!-- Contact -->
-      <div class="space-y-8">
-        <div class="inline-flex items-center gap-3">
-          <span class="h-1 w-8 bg-viking-gold"></span>
-          <h3 class="text-2xl font-display font-bold text-light-cream">
-            Kontakt
-          </h3>
-        </div>
-
-        <div class="space-y-6">
-          <div class="space-y-2">
-            <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Email</span>
-            <div>
-              <Button
-                href="mailto:SlovanskeSiloveKlani@gmail.com"
-                variant="primary"
-                size="default"
-                class="w-max gap-2"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  class="size-5"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"
-                  ></path>
-                </svg>
-                Kontaktovat Organizátora
-              </Button>
-            </div>
-          </div>
-
-          <div class="space-y-2">
-            <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Adresa</span>
-            <div class="flex items-start gap-3 text-gray-300">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                class="size-5 text-viking-gold mt-0.5 shrink-0"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"></path>
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
-                ></path>
-              </svg>
-              <span class="leading-relaxed">
-                Pustiměřské Prusy, hasičská zbrojnice<br />Česká Republika
-              </span>
-            </div>
-          </div>
+        <div class="flex items-start gap-3 text-gray-300">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-5 text-viking-gold mt-0.5 shrink-0"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"></path>
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
+            ></path>
+          </svg>
+          <span class="leading-relaxed">
+            Pustiměřské Prusy, hasičská zbrojnice<br />Česká Republika
+          </span>
         </div>
       </div>
 
       <!-- Map -->
       <div class="space-y-4">
-        <div class="inline-flex items-center gap-3">
-          <span class="h-1 w-8 bg-viking-gold"></span>
-          <h3 class="text-2xl font-display font-bold text-light-cream">
-            Mapa
-          </h3>
-        </div>
-
         <div
-          class="h-56 bg-stone/50 overflow-hidden relative shadow-2xl border border-white/10 group category-card"
+          class="h-64 bg-stone/50 overflow-hidden relative shadow-2xl border border-white/10 group"
         >
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2602.5!2d17.03!3d49.28!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4712f3b9c0c0c0c1%3A0x0!2sHasi%C4%8Dsk%C3%A1%20zbrojnice%20Pustim%C4%9B%C5%99sk%C3%A9%20Prusy!5e0!3m2!1sen!2scz!4v1620000000000!5m2!1sen!2scz"
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2602!2d17.028537!3d49.317780!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z49LjAxNyc3ODAiTiAxN8KwMDEnNDIuNyJF!5e0!3m2!1scs!2scz!4v1700000000000!5m2!1scs!2scz"
             width="100%"
             height="100%"
             style="border:0;"
             allowfullscreen=""
             loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
             class="grayscale group-hover:grayscale-0 transition-all duration-500 opacity-80 group-hover:opacity-100"
           ></iframe>
           <a
-            href="https://maps.google.com/?q=Pustiměřské+Prusy+hasičská+zbrojnice"
+            href="https://www.google.com/maps?q=49.317780,17.028537"
             target="_blank"
             class="absolute bottom-3 right-3 bg-white text-black px-3 py-1.5 font-bold text-xs shadow-lg hover:bg-gray-200 transition-colors"
           >

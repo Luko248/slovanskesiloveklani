@@ -1,0 +1,282 @@
+---
+const slides = [
+  {
+    title: "Historický slovanský boj",
+    description:
+      "Hlavní bod doprovodného programu — ukázka historického slovanského boje. Uvidíte souboje s meči a štíty, sekerami i halapartnami v podání zkušených šermířů. Prožijte atmosféru dávných bitev na vlastní oči.",
+    image: "/images/program/duel.avif",
+  },
+  {
+    title: "Tradiční kovářská dílna",
+    description:
+      "Na místě bude přítomen tradiční kovář s ukázkou řemesla našich předků. Sledujte, jak pod údery kladiva vznikají jedinečné výrobky. Zakupte si originální kovaný suvenýr přímo z výhně — nože, přívěsky nebo ozdoby.",
+    image: "/images/program/blcksmith.avif",
+  },
+  {
+    title: "Lukostřelba",
+    description:
+      "Vyzkoušejte si střelbu z luku pod dohledem zkušených instruktorů. Ať už jste začátečník nebo ostřílený lučištník, na místě si můžete otestovat svůj postřeh a přesnost. Zábava pro děti i dospělé.",
+    image: "/images/program/bow-shooting.avif",
+  },
+  {
+    title: "Občerstvení & Grill",
+    description:
+      "Naši dobrovolní hasiči pro vás připraví grilované speciality — klobásy, steaky a další pochoutky přímo na ohni. K dispozici bude také bar s točeným pivem, medovinou a nealkoholickými nápoji. Nikdo neodejde hladový.",
+    image: "/images/program/refreshment.avif",
+  },
+];
+const total = slides.length.toString().padStart(2, "0");
+---
+
+<section
+  id="attractions"
+  class="py-32 bg-deep-charcoal relative scroll-mt-24"
+>
+  <div class="container mx-auto px-4 relative z-10">
+    <!-- Section Header -->
+    <div class="text-center mb-16 max-w-3xl mx-auto">
+      <div class="inline-flex items-center gap-4 mb-6">
+        <span class="h-1 w-12 bg-viking-green"></span>
+        <h2
+          class="text-4xl md:text-5xl font-display font-bold text-light-cream"
+        >
+          Doprovodný Program
+        </h2>
+        <span class="h-1 w-12 bg-viking-green"></span>
+      </div>
+      <p class="text-xl text-gray-400">
+        Slovanské Silové Klání není jen soutěž — je to celý den plný zážitků,
+        řemesel a chutí.
+      </p>
+    </div>
+
+    <!-- CSS-only Carousel — scroll-snap + radio indicators -->
+    <div class="attractions-carousel max-w-4xl mx-auto">
+      <!-- Hidden radio inputs for slide control -->
+      <input
+        type="radio"
+        name="attraction"
+        id="attr-1"
+        class="sr-only peer/s1"
+        checked
+      />
+      <input
+        type="radio"
+        name="attraction"
+        id="attr-2"
+        class="sr-only peer/s2"
+      />
+      <input
+        type="radio"
+        name="attraction"
+        id="attr-3"
+        class="sr-only peer/s3"
+      />
+      <input
+        type="radio"
+        name="attraction"
+        id="attr-4"
+        class="sr-only peer/s4"
+      />
+
+      <!-- Carousel track -->
+      <div class="carousel-track">
+        <div class="carousel-slides">
+          {
+            slides.map((slide, idx) => (
+              <div class="carousel-item">
+                <div class="carousel-layout">
+                  {/* Text side — golden ratio narrow */}
+                  <div class="carousel-text">
+                    <div class="inline-flex items-center gap-3">
+                      <span class="h-1 w-8 bg-viking-gold" />
+                      <span class="text-viking-gold font-display text-sm uppercase tracking-widest">
+                        {`0${idx + 1} / ${total}`}
+                      </span>
+                    </div>
+                    <h3 class="text-3xl md:text-4xl font-display font-bold text-light-cream">
+                      {slide.title}
+                    </h3>
+                    <p class="text-lg leading-relaxed text-gray-400">
+                      {slide.description}
+                    </p>
+                  </div>
+
+                  {/* Image side — golden ratio wide */}
+                  <div class="carousel-image">
+                    <div class="relative category-card overflow-hidden aspect-[4/3] border border-viking-green/20">
+                      <img
+                        src={slide.image}
+                        alt={slide.title}
+                        class="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                      <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Line indicators -->
+      <nav class="carousel-nav" aria-label="Carousel navigation">
+        <label for="attr-1" class="carousel-line" aria-label="Slide 1"></label>
+        <label for="attr-2" class="carousel-line" aria-label="Slide 2"></label>
+        <label for="attr-3" class="carousel-line" aria-label="Slide 3"></label>
+        <label for="attr-4" class="carousel-line" aria-label="Slide 4"></label>
+      </nav>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ── Carousel track ── */
+  .carousel-track {
+    overflow: hidden;
+    position: relative;
+  }
+
+  .carousel-slides {
+    display: flex;
+    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .carousel-item {
+    inline-size: 100%;
+    flex-shrink: 0;
+  }
+
+  /* ── Golden ratio layout: text 38.2% / image 61.8% ── */
+  .carousel-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  @media (min-width: 768px) {
+    .carousel-layout {
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+  }
+
+  .carousel-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    order: 2;
+  }
+
+  .carousel-image {
+    order: 1;
+  }
+
+  @media (min-width: 768px) {
+    .carousel-text {
+      order: 1;
+    }
+    .carousel-image {
+      order: 2;
+    }
+  }
+
+  /* ── Slide positioning via radio state ── */
+  #attr-1:checked ~ .carousel-track .carousel-slides {
+    transform: translateX(0%);
+  }
+  #attr-2:checked ~ .carousel-track .carousel-slides {
+    transform: translateX(-100%);
+  }
+  #attr-3:checked ~ .carousel-track .carousel-slides {
+    transform: translateX(-200%);
+  }
+  #attr-4:checked ~ .carousel-track .carousel-slides {
+    transform: translateX(-300%);
+  }
+
+  /* ── Line indicators ── */
+  .carousel-nav {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-block-start: 2.5rem;
+  }
+
+  .carousel-line {
+    inline-size: 1.5rem;
+    block-size: 3px;
+    background-color: var(--color-viking-gold);
+    opacity: 0.3;
+    cursor: pointer;
+    scale: 1;
+    transition: opacity 0.3s ease, scale 0.3s ease;
+  }
+
+  .carousel-line:hover {
+    opacity: 0.6;
+  }
+
+  /* Active line states */
+  #attr-1:checked ~ .carousel-nav .carousel-line:nth-child(1),
+  #attr-2:checked ~ .carousel-nav .carousel-line:nth-child(2),
+  #attr-3:checked ~ .carousel-nav .carousel-line:nth-child(3),
+  #attr-4:checked ~ .carousel-nav .carousel-line:nth-child(4) {
+    opacity: 1;
+    scale: 1.5 1;
+  }
+
+  /* ── Progressive enhancement: native CSS carousel ── */
+  @supports (scroll-marker-group: after) {
+    .carousel-nav {
+      display: none;
+    }
+
+    .carousel-track {
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+      scroll-marker-group: after;
+    }
+
+    .carousel-track::-webkit-scrollbar {
+      display: none;
+    }
+
+    .carousel-slides {
+      transition: none;
+      transform: none !important;
+    }
+
+    .carousel-item {
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+    }
+
+    .carousel-track::scroll-marker-group {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      padding-block-start: 2.5rem;
+    }
+
+    .carousel-item::scroll-marker {
+      content: "";
+      inline-size: 1.5rem;
+      block-size: 3px;
+      background-color: var(--color-viking-gold);
+      opacity: 0.3;
+      scale: 1;
+      transition: opacity 0.3s ease, scale 0.3s ease;
+    }
+
+    .carousel-item::scroll-marker:target-current {
+      opacity: 1;
+      scale: 1.5 1;
+    }
+  }
+</style>
