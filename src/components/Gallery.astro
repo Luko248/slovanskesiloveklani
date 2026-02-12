@@ -1,46 +1,73 @@
 ---
 // Force CS
+import Button from './ui/Button.astro';
 const lang = 'cs';
 
-// Placeholders from Unsplash - Need to be replaced by real images in future or placed in public/images/gallery
 const images = [
-    'https://images.unsplash.com/photo-1605296867304-46d5465a13f1?q=80&w=800&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1574680096145-d05b474e2155?q=80&w=800&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1517963879466-e1b54f39486c?q=80&w=800&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?q=80&w=800&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=800&auto=format&fit=crop',
+    '/images/gallery/2025_slovanske_silove_klani-15.avif',
+    '/images/gallery/2025_slovanske_silove_klani-33.avif',
+    '/images/gallery/2025_slovanske_silove_klani-51.avif',
+    '/images/gallery/2025_slovanske_silove_klani-57.avif',
+    '/images/gallery/2025_slovanske_silove_klani-59.avif',
+    '/images/gallery/2025_slovanske_silove_klani-7.avif',
 ];
 ---
 
-<section id="gallery" class="py-20 bg-deep-charcoal relative scroll-mt-24">
+<section id="gallery" class="py-32 bg-deep-charcoal relative scroll-mt-24">
     <div class="container mx-auto px-4 relative z-10">
-        <h2 class="text-4xl md:text-5xl font-display font-bold text-center text-viking-red mb-12 drop-shadow-md">
+        <h2 class="text-4xl md:text-5xl font-display font-bold text-center text-viking-green mb-12 drop-shadow-md">
             Galerie Minulých Ročníků
-            </h2>
-            <p class="text-lg text-gray-400 max-w-2xl mx-auto">
-                Ohlédnutí za předchozími ročníky. Krev, pot a železo.
-            </p>
+        </h2>
+        <p class="text-lg text-gray-400 max-w-2xl mx-auto text-center mb-12">
+            Ohlédnutí za předchozími ročníky. Krev, pot a železo.
+        </p>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {images.map((img, idx) => (
-                <div class="group relative aspect-[4/3] rounded-xl overflow-hidden shadow-xl cursor-pointer">
-                    <div class="absolute inset-0 bg-black/60 group-hover:bg-black/0 transition-all duration-500 z-10"></div>
+                <a 
+                    href={img} 
+                    data-fancybox="gallery" 
+                    data-caption="Slovanské Silové Klání"
+                    class="group relative aspect-[4/3] rounded-none overflow-hidden shadow-xl cursor-pointer block"
+                >
+                    <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-all duration-500 z-10 pointer-events-none"></div>
                     
                     <img 
                         src={img} 
-                        alt={`Gallery Image ${idx + 1}`} 
-                        class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0"
+                        alt={`Galerie ${idx + 1}`} 
+                        class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110 grayscale-[50%] group-hover:grayscale-0"
                         loading="lazy"
                     />
                     
-                    <div class="absolute bottom-0 left-0 w-full p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-20 bg-gradient-to-t from-black/90 to-transparent">
-                        <span class="text-white font-display text-lg tracking-wide border-l-4 border-viking-red pl-3">Slovanské Silové Klání</span>
+                    <div class="absolute bottom-0 left-0 w-full p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-20 bg-gradient-to-t from-black/90 to-transparent pointer-events-none">
+                        <span class="text-white font-display text-lg tracking-wide border-l-4 border-viking-green pl-3">Slovanské Silové Klání</span>
                     </div>
 
-                    <div class="absolute inset-0 border-4 border-transparent group-hover:border-viking-red/50 transition-colors duration-300 z-20 rounded-xl pointer-events-none"></div>
-                </div>
+                    <div class="absolute inset-0 border-4 border-transparent group-hover:border-viking-green/50 transition-colors duration-300 z-20 rounded-none pointer-events-none"></div>
+                </a>
             ))}
+        </div>
+
+        <div class="mt-16 text-center">
+            <Button 
+                href="https://musilova.pixellu.gallery/slovanske_silove_klani_2025/all"
+                target="_blank"
+                rel="noopener noreferrer"
+                variant="secondary"
+                size="default"
+                class="shadow-xl"
+            >
+                Zobrazit celou galerii 2025
+            </Button>
         </div>
     </div>
 </section>
+
+<script>
+  import { Fancybox } from "@fancyapps/ui";
+  import "@fancyapps/ui/dist/fancybox/fancybox.css";
+
+  Fancybox.bind("[data-fancybox]", {
+    // Your custom options
+  });
+</script>

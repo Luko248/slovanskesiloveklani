@@ -9,14 +9,14 @@ const features = [
 ];
 ---
 
-<section id="about" class="py-20 bg-charcoal relative z-10 scroll-mt-24">
+<section id="about" class="py-32 bg-deep-charcoal relative z-10 scroll-mt-24">
     <div class="container mx-auto px-4 z-10 relative">
         <div class="grid md:grid-cols-2 gap-16 items-center">
             
             <!-- Text Content -->
             <div class="space-y-8">
                 <div class="inline-flex items-center gap-4">
-                    <span class="h-1 w-12 bg-viking-red"></span>
+                    <span class="h-1 w-12 bg-viking-green"></span>
                     <h2 class="text-4xl md:text-5xl font-display font-bold text-light-cream">
                         O soutěži
                     </h2>
@@ -32,16 +32,18 @@ const features = [
                         ale pouze to, co nám nadělila Matka Příroda - kameny, klády, železo.
                         Disciplíny testují sílu, rychlost, výbušnost a vytrvalost.
                     </p>
-                    <p class="text-lg leading-relaxed text-viking-red font-bold italic">
+                    <p class="text-lg leading-relaxed text-viking-green font-bold italic">
                         "Zde budete krvácet. Účast bolí. Ale odnesete si víc než jen tričko."
                     </p>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-8 mt-8">
                     {features.map(feature => (
-                        <div class="flex items-center gap-3 p-3 bg-black/20 rounded-lg border border-bronze/20">
-                             <div class="text-viking-red">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <div class="flex items-center gap-4 py-1">
+                             <div class="text-viking-green shrink-0">
+                                <svg class="w-6 h-6" viewBox="0 0 512.001 512.001" fill="currentColor">
+                                    <path d="M507.606,4.394c-3.339-3.339-8.055-4.909-12.728-4.243L346.387,21.364c-3.688,0.527-7.047,2.406-9.425,5.273 L139.321,264.938c-16.353-7.263-36.394-4.357-50.074,9.323l-21.213,21.213c-5.854,5.854-5.857,15.356,0,21.213l31.82,31.82 l-48.64,48.64H45c-24.813,0-45,20.187-45,45V467c0,24.813,20.187,45,45,45h24.853c24.813,0,45-20.187,45-45v-6.213l48.639-48.64 l31.82,31.82c5.854,5.854,15.356,5.857,21.213,0l21.212-21.213c13.638-13.638,16.611-33.666,9.323-50.075l238.302-197.641 c2.866-2.378,4.746-5.737,5.273-9.425L511.85,17.121C512.517,12.447,510.945,7.732,507.606,4.394z M84.853,467 c0,8.271-6.729,15-15,15H45c-8.271,0-15-6.729-15-15v-24.853c0-8.271,6.729-15,15-15h6.213l33.64,33.64V467z M99.853,433.36 L78.64,412.147l42.426-42.426l21.213,21.213L99.853,433.36z M216.525,401.54l-10.606,10.606L99.853,306.081l10.607-10.606 c5.863-5.863,15.349-5.863,21.213,0l84.853,84.853C222.388,386.191,222.388,395.677,216.525,401.54z M461.757,155.642 L228.075,349.451l-22.156-22.157l174.408-174.408c5.858-5.858,5.858-15.355,0-21.213c-5.857-5.858-15.355-5.858-21.213,0 L184.706,306.081l-22.156-22.156L356.358,50.244l122.964-17.566L461.757,155.642z"></path>
+                                </svg>
                              </div>
                              <span class="font-semibold text-gray-200">{feature}</span>
                         </div>
@@ -50,17 +52,15 @@ const features = [
             </div>
 
             <!-- Visual/Image Side -->
-            <div class="relative">
-                <div class="absolute -inset-4 bg-viking-red/10 rounded-xl transform rotate-3"></div>
-                <div class="absolute -inset-4 bg-bronze/10 rounded-xl transform -rotate-3"></div>
-                
-                <div class="relative rounded-xl overflow-hidden shadow-2xl aspect-[4/5] border-4 border-gray-800 max-h-[500px] w-auto mx-auto">
+            <div class="relative max-w-[500px] w-auto mx-auto viking-card group">
+                 <div class="viking-border absolute inset-0 border-4 border-solid border-viking-green/40 group-hover:border-viking-green/80 transition-colors duration-300 pointer-events-none z-20"></div>
+                 <div class="relative h-full aspect-[4/5] overflow-hidden bg-deep-charcoal">
                      <div class="w-full h-full bg-cover bg-center transition-transform hover:scale-105 duration-700" 
-                          style="background-image: url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2670&auto=format&fit=crop'); filter: sepia(0.2) contrast(1.1);"></div>
+                          style="background-image: url('/images/gallery/2025_slovanske_silove_klani-59.avif'); filter: sepia(0.2) contrast(1.1);"></div>
                      
                      <!-- Overlay Text -->
-                     <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/90 to-transparent p-8">
-                        <p class="text-white font-display text-2xl">Síla. Odvaha. Čest.</p>
+                     <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/90 to-transparent p-8 z-10">
+                        <p class="text-white font-display text-2xl drop-shadow-md">Síla. Odvaha. Čest.</p>
                      </div>
                 </div>
             </div>
