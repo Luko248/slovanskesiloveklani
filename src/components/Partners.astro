@@ -1,77 +1,122 @@
 ---
-import Button from './ui/Button.astro';
+import Button from "./ui/Button.astro";
 ---
 
-<section id="partners-section" class="py-32 bg-deep-charcoal relative scroll-mt-24">
-    <div class="absolute inset-0 opacity-10 pointer-events-none pattern-overlay"></div>
-    
-    <div class="container mx-auto px-4 relative z-10">
-        <div class="text-center mb-12">
-            <h2 class="text-4xl md:text-5xl font-display font-bold text-viking-green mb-4 drop-shadow-md">
-                Staňte se Partnerem
-            </h2>
-            <div class="w-24 h-1 bg-viking-green mx-auto mb-6"></div>
-            <p class="text-xl text-gray-300 max-w-3xl mx-auto">
-                Podpořte tradici, sílu a odhodlání. Hledáme partnery, kteří nám pomohou posunout Slovanské Silové Klání na novou úroveň.
-            </p>
-        </div>
+<section
+  id="partners-section"
+  class="py-32 bg-deep-charcoal relative scroll-mt-24"
+>
+  <div class="absolute inset-0 opacity-10 pointer-events-none pattern-overlay">
+  </div>
 
-        <div class="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto items-center">
-            
-            <!-- Text Content -->
-            <div class="space-y-6 text-gray-300">
-                <p class="text-lg leading-relaxed">
-                    Slovanské Silové Klání je jedinečná událost, která spojuje komunitu silových sportovců a nadšenců. Každý ročník roste a s ním i naše ambice.
-                </p>
-                <p class="text-lg leading-relaxed">
-                    Nabízíme možnost zviditelnění vaší značky před stovkami diváků a závodníků přímo na místě, i na našich sociálních sítích. Uvítáme jakoukoliv formu podpory – od finanční, přes věcné ceny pro vítěze, až po materiální zajištění.
-                </p>
-                <ul class="space-y-3 mt-4">
-                    <li class="flex items-center gap-3">
-                        <!-- Heroicon: Check Circle -->
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-viking-green shrink-0">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                        </svg>
-                        <span>Logo na plakátech a bannerech</span>
-                    </li>
-                    <li class="flex items-center gap-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-viking-green shrink-0">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                        </svg>
-                        <span>Propagace na sociálních sítích</span>
-                    </li>
-                    <li class="flex items-center gap-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-viking-green shrink-0">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                        </svg>
-                        <span>Moderované poděkování během akce</span>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Contact/Action Box -->
-            <div class="bg-black/20 backdrop-blur-sm p-8 rounded-none border-2 border-viking-green/30 shadow-2xl transform hover:scale-105 transition-transform duration-500">
-                <h3 class="text-2xl font-display font-bold text-viking-green mb-4 text-center">Máte zájem o spolupráci?</h3>
-                <p class="text-center mb-8 opacity-80">
-                    Napište nám a společně vymyslíme balíček na míru.
-                </p>
-                
-                <div class="space-y-4">
-                    <Button 
-                        href="mailto:SlovanskeSiloveKlani@gmail.com?subject=Spolupráce%20-%20Partnerství&body=Dobrý%20den,%0A%0Amáme%20zájem%20stát%20se%20partnerem%20Vaší%20akce.%0A%0ANáš%20návrh/dotaz:%0A" 
-                        variant="primary"
-                        size="default"
-                        class="w-full gap-3"
-                    >
-                        <!-- Heroicon: Pencil Square (or Envelope) -->
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
-                        </svg>
-                        Napsat Email
-                    </Button>
-                </div>
-            </div>
-
-        </div>
+  <div class="container mx-auto px-4 relative z-10 max-w-4xl">
+    <div class="text-center mb-16">
+      <div class="inline-flex items-center gap-4 mb-6">
+        <span class="h-1 w-12 bg-viking-gold"></span>
+        <h2
+          class="text-4xl md:text-5xl font-display font-bold text-light-cream"
+        >
+          Staňte se Partnerem
+        </h2>
+        <span class="h-1 w-12 bg-viking-gold"></span>
+      </div>
+      <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+        Podpořte tradici, sílu a odhodlání. Hledáme partnery, kteří nám pomohou
+        posunout Slovanské Silové Klání na novou úroveň.
+      </p>
     </div>
+
+    <div class="space-y-8 text-center">
+      <div class="prose prose-lg prose-invert max-w-none">
+        <p class="text-lg leading-relaxed text-gray-300">
+          Slovanské Silové Klání je jedinečná událost, která spojuje komunitu
+          silových sportovců a nadšenců. Každý ročník roste a s ním i naše
+          ambice. Nabízíme možnost zviditelnění vaší značky před stovkami diváků
+          a závodníků přímo na místě, i na našich sociálních sítích.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto">
+        <div class="flex items-center gap-3 justify-center py-3 px-4 border border-viking-green/20 bg-viking-green/5" style="border-radius: 8px; corner-shape: scoop;">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-5 text-viking-gold shrink-0"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+            ></path>
+          </svg>
+          <span class="text-gray-200 font-semibold">Logo na plakátech</span>
+        </div>
+        <div class="flex items-center gap-3 justify-center py-3 px-4 border border-viking-green/20 bg-viking-green/5" style="border-radius: 8px; corner-shape: scoop;">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-5 text-viking-gold shrink-0"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+            ></path>
+          </svg>
+          <span class="text-gray-200 font-semibold">Sociální sítě</span>
+        </div>
+        <div class="flex items-center gap-3 justify-center py-3 px-4 border border-viking-green/20 bg-viking-green/5" style="border-radius: 8px; corner-shape: scoop;">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-5 text-viking-gold shrink-0"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+            ></path>
+          </svg>
+          <span class="text-gray-200 font-semibold">Poděkování na akci</span>
+        </div>
+      </div>
+
+      <div class="pt-4">
+        <p class="text-gray-400 mb-8">
+          Napište nám a společně vymyslíme balíček na míru.
+        </p>
+        <Button
+          href="mailto:SlovanskeSiloveKlani@gmail.com?subject=Spolupráce%20-%20Partnerství&body=Dobrý%20den,%0A%0Amáme%20zájem%20stát%20se%20partnerem%20Vaší%20akce.%0A%0ANáš%20návrh/dotaz:%0A"
+          variant="primary"
+          size="large"
+          class="gap-3 shadow-xl"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-5"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
+            ></path>
+          </svg>
+          Napsat Email
+        </Button>
+      </div>
+    </div>
+  </div>
 </section>

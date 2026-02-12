@@ -1,41 +1,41 @@
 ---
 interface Props {
   href?: string;
-  variant?: 'primary' | 'secondary';
-  size?: 'small' | 'default' | 'large';
+  variant?: "primary" | "secondary";
+  size?: "small" | "default" | "large";
   class?: string;
   [key: string]: any; // Allow other props like id, onclick, etc.
 }
 
-const { 
-  href, 
-  variant = 'primary', 
-  size = 'default', 
-  class: className = '', 
-  ...rest 
+const {
+  href,
+  variant = "primary",
+  size = "default",
+  class: className = "",
+  ...rest
 } = Astro.props;
 
-const baseStyles = "inline-flex items-center justify-center font-bold rounded-none transition-all duration-300 transform shadow-md hover:scale-105 cursor-pointer font-display tracking-wide";
+const baseStyles =
+  "inline-flex items-center justify-center font-bold rounded-none transition-all duration-300 transform shadow-md hover:scale-105 cursor-pointer font-display tracking-wide w-full sm:w-auto";
 
 const variants = {
-  primary: "bg-viking-green text-white hover:bg-deep-green border border-white/10",
-  secondary: "bg-white text-black hover:bg-gray-100 border border-transparent",
+  primary:
+    "bg-viking-green text-white hover:bg-deep-green border border-viking-green/50",
+  secondary:
+    "bg-viking-gold/10 text-viking-gold border border-viking-gold/30 hover:bg-viking-gold hover:text-deep-charcoal backdrop-blur-sm",
 };
 
 const sizes = {
-  small: "px-4 py-2 text-sm",
-  default: "px-6 py-3 text-lg",
-  large: "px-12 py-5 text-2xl uppercase tracking-wider", 
+  small: "h-9 px-4 text-sm",
+  default: "h-11 px-6 text-base",
+  large: "h-14 px-8 text-lg uppercase tracking-wider",
 };
 
-const classes = [
-  baseStyles,
-  variants[variant],
-  sizes[size],
-  className
-].join(" ");
+const classes = [baseStyles, variants[variant], sizes[size], className].join(
+  " ",
+);
 
-const Element = href ? 'a' : 'button';
+const Element = href ? "a" : "button";
 ---
 
 <Element href={href} class={classes} {...rest}>

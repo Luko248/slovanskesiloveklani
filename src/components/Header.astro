@@ -1,60 +1,78 @@
 ---
-import { useTranslations } from '../i18n/utils';
-import Button from './ui/Button.astro';
+import { useTranslations } from "../i18n/utils";
+import Button from "./ui/Button.astro";
 
 // Hardcoded lang since we are enforcing CS only generally, but keeping prop for compatibility
-const { lang = 'cs' } = Astro.props;
+const { lang = "cs" } = Astro.props;
 const t = useTranslations(lang);
 
 const navItems = [
-  { label: t('nav.about'), href: '#about' },
-  { label: t('nav.categories'), href: '#categories' },
-  { label: t('nav.registration'), href: '#registration' },
-  { label: t('nav.gallery'), href: '#gallery' },
-  { label: t('nav.contact'), href: '#footer' },
+  { label: t("nav.about"), href: "#about" },
+  { label: t("nav.categories"), href: "#categories" },
+  { label: t("nav.registration"), href: "#registration" },
+  { label: t("nav.gallery"), href: "#gallery" },
+  { label: t("nav.contact"), href: "#footer" },
 ];
 ---
 
-<header class="fixed top-0 w-full z-50 transition-all duration-300 bg-black/80 backdrop-blur-md border-b border-viking-green/20 shadow-lg">
-  <div class="container mx-auto px-4 py-3 flex items-center justify-between">
-    
+<header
+  class="fixed top-0 w-full z-50 transition-all duration-300 bg-black/90 backdrop-blur-md border-b border-viking-green/20 shadow-lg h-[72px] flex items-center"
+>
+  <div class="container mx-auto px-4 flex items-center justify-between h-full">
     <!-- Logo (Left) -->
     <a href="/" class="group flex items-center justify-start shrink-0">
-      <span class="font-display text-xl font-bold text-viking-green tracking-widest group-hover:text-vivid-green transition-colors duration-300 drop-shadow-sm uppercase">
+      <span
+        class="font-display text-xl font-bold text-light-cream tracking-widest group-hover:text-viking-gold transition-colors duration-300 drop-shadow-sm uppercase"
+      >
         <span class="md:hidden">SSK</span>
         <span class="hidden md:inline">Slovanské Silové Klání</span>
       </span>
     </a>
 
     <!-- Navigation (Center) -->
-    <nav class="hidden md:flex items-center justify-center gap-6 absolute left-1/2 transform -translate-x-1/2">
-      {navItems.map(item => (
-        <a 
-          href={item.href} 
-          class="font-display text-lg text-light-cream hover:text-viking-green transition-colors relative group whitespace-nowrap"
-        >
-          {item.label}
-          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-viking-green transition-all duration-300 group-hover:w-full"></span>
-        </a>
-      ))}
+    <nav
+      class="hidden md:flex items-center justify-center gap-6 absolute left-1/2 transform -translate-x-1/2"
+    >
+      {
+        navItems.map((item) => (
+          <a
+            href={item.href}
+            class="font-display text-lg text-light-cream hover:text-viking-green transition-colors relative group whitespace-nowrap"
+          >
+            {item.label}
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-viking-green transition-all duration-300 group-hover:w-full" />
+          </a>
+        ))
+      }
     </nav>
 
-     <!-- Right Actions -->
+    <!-- Right Actions -->
     <div class="flex items-center gap-4 justify-end shrink-0">
-       <!-- Calendar Button -->
-       <Button 
-         id="add-to-calendar-btn"
-         variant="secondary"
-         size="small"
-         class="flex gap-2"
-         onclick="window.addToCalendar()"
-       >
-         <!-- Heroicon: Calendar -->
-         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
-           <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z" />
-         </svg>
-         <span class="hidden md:inline">Do Kalendáře</span>
-       </Button>
+      <!-- Calendar Button -->
+      <Button
+        id="add-to-calendar-btn"
+        variant="secondary"
+        size="small"
+        class="flex gap-2 h-9"
+        onclick="window.addToCalendar()"
+      >
+        <!-- Heroicon: Calendar -->
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="size-5"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z"
+          ></path>
+        </svg>
+        <span class="hidden md:inline">Do Kalendáře</span>
+      </Button>
 
       <!-- Mobile Menu Button -->
       <button
@@ -63,66 +81,104 @@ const navItems = [
         aria-label="Menu"
       >
         <!-- Heroicon: Bars 3 -->
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="size-8"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
         </svg>
       </button>
     </div>
   </div>
 
   <!-- Mobile Menu Overlay -->
-  <div 
-    id="mobile-menu" 
-    class="fixed inset-0 bg-deep-charcoal z-40 transform translate-x-full transition-transform duration-300 flex flex-col pt-24 px-6 md:hidden overflow-y-auto"
+  <div
+    id="mobile-menu"
+    class="fixed top-[72px] left-0 w-full h-[calc(100dvh-72px)] bg-deep-charcoal z-40 transform translate-x-full transition-transform duration-300 flex flex-col p-6 border-t border-viking-green/20 overflow-y-auto"
   >
-     <button 
+    <div class="flex justify-end mb-4">
+      <button
         id="close-menu-btn"
-        class="absolute top-6 right-6 text-light-cream hover:text-viking-green p-2"
-     >
-       <!-- Heroicon: X Mark -->
-       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8">
-         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-       </svg>
-     </button>
-    {navItems.map(item => (
-      <a href={item.href} class="font-display text-lg text-center py-2 border-b border-white/5 last:border-0 hover:text-viking-green mobile-link">
-        {item.label}
-      </a>
-    ))}
-    <Button id="mobile-calendar-btn" variant="secondary" size="default" class="w-full mt-2">
-        Přidat do kalendáře
-    </Button>
+        class="text-light-cream hover:text-viking-green p-2 flex items-center gap-2"
+      >
+        <span class="text-sm font-bold uppercase tracking-wider">Zavřít</span>
+        <!-- Heroicon: X Mark -->
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="size-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M6 18 18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+
+    <div class="flex flex-col gap-4 items-center justify-center flex-1">
+      {
+        navItems.map((item) => (
+          <a
+            href={item.href}
+            class="font-display text-2xl font-bold text-center py-3 text-light-cream hover:text-viking-green transition-colors mobile-link w-full border-b border-white/5"
+          >
+            {item.label}
+          </a>
+        ))
+      }
+      <div class="mt-8 w-full">
+        <Button
+          id="mobile-calendar-btn"
+          variant="secondary"
+          size="default"
+          class="w-full h-12"
+        >
+          Přidat do kalendáře
+        </Button>
+      </div>
+    </div>
   </div>
 </header>
 
 <script>
-  import { downloadICS } from '../utils/calendar';
+  import { downloadICS } from "../utils/calendar";
 
-  const btn = document.getElementById('mobile-menu-btn');
-  const closeBtn = document.getElementById('close-menu-btn');
-  const menu = document.getElementById('mobile-menu');
-  const calendarBtn = document.getElementById('add-to-calendar-btn');
-  const mobileCalendarBtn = document.getElementById('mobile-calendar-btn');
-  const mobileLinks = document.querySelectorAll('.mobile-link');
+  const btn = document.getElementById("mobile-menu-btn");
+  const closeBtn = document.getElementById("close-menu-btn");
+  const menu = document.getElementById("mobile-menu");
+  const calendarBtn = document.getElementById("add-to-calendar-btn");
+  const mobileCalendarBtn = document.getElementById("mobile-calendar-btn");
+  const mobileLinks = document.querySelectorAll(".mobile-link");
 
   function toggleMenu() {
-    menu?.classList.toggle('translate-x-full');
-    document.body.classList.toggle('overflow-hidden');
+    menu?.classList.toggle("translate-x-full");
+    document.body.classList.toggle("overflow-hidden");
   }
 
   function closeMenu() {
-    menu?.classList.add('translate-x-full');
-    document.body.classList.remove('overflow-hidden');
+    menu?.classList.add("translate-x-full");
+    document.body.classList.remove("overflow-hidden");
   }
 
-  btn?.addEventListener('click', toggleMenu);
-  closeBtn?.addEventListener('click', closeMenu);
+  btn?.addEventListener("click", toggleMenu);
+  closeBtn?.addEventListener("click", closeMenu);
 
   // Close mobile menu when clicking a link
-  mobileLinks.forEach(link => {
-    link.addEventListener('click', closeMenu);
+  mobileLinks.forEach((link) => {
+    link.addEventListener("click", closeMenu);
   });
 
-  calendarBtn?.addEventListener('click', downloadICS);
-  mobileCalendarBtn?.addEventListener('click', downloadICS);
+  calendarBtn?.addEventListener("click", downloadICS);
+  mobileCalendarBtn?.addEventListener("click", downloadICS);
 </script>

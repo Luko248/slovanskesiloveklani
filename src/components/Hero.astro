@@ -1,107 +1,211 @@
 ---
-import { useTranslations } from '../i18n/utils';
-import { getFormattedDateTime, getFullLocation, EVENT_CONFIG } from '../utils/eventConfig';
-import Button from './ui/Button.astro';
+import { useTranslations } from "../i18n/utils";
+import {
+  getFormattedDateTime,
+  getFullLocation,
+  EVENT_CONFIG,
+} from "../utils/eventConfig";
+import Button from "./ui/Button.astro";
 
 // Force CS
-const lang = 'cs';
+const lang = "cs";
 const t = useTranslations(lang);
 
 const eventDate = new Date(
-  EVENT_CONFIG.date.year, 
-  EVENT_CONFIG.date.month - 1, 
-  EVENT_CONFIG.date.day, 
-  EVENT_CONFIG.time.startHour, 
-  EVENT_CONFIG.time.startMinute
+  EVENT_CONFIG.date.year,
+  EVENT_CONFIG.date.month - 1,
+  EVENT_CONFIG.date.day,
+  EVENT_CONFIG.time.startHour,
+  EVENT_CONFIG.time.startMinute,
 ).toISOString();
 ---
 
-<section class="relative h-screen w-full flex items-center justify-center overflow-hidden">
-  
+<section
+  class="relative min-h-screen w-full flex items-center justify-center overflow-hidden py-20"
+>
   <!-- Background Image with Overlay -->
   <div class="absolute inset-0 z-0">
-    <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/80 z-10"></div>
-    <div class="w-full h-full bg-cover bg-center bg-no-repeat bg-fixed transform scale-105" 
-         style="background-image: url('/images/hero/hero-bg.jpg'); filter: contrast(1.1) brightness(0.7) sepia(0.3) saturate(1.2);"> 
+    <div
+      class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/80 z-10"
+    >
+    </div>
+    <div
+      class="w-full h-full bg-cover bg-center bg-no-repeat bg-fixed transform scale-105"
+      style="background-image: url('/images/hero/hero-bg.jpg'); filter: contrast(1.1) brightness(0.7) sepia(0.3) saturate(1.2);"
+    >
     </div>
   </div>
 
   <!-- Content -->
-  <div class="relative z-20 container mx-auto px-4 mt-16 flex justify-center items-center h-full">
+  <div class="relative z-20 w-full flex justify-center items-center h-full">
     <!-- Shield Container -->
-    <div class="viking-shield-container relative w-full max-w-2xl aspect-[3/4] flex flex-col items-center justify-center text-center shadow-2xl animate-fade-in-up">
-        
-        <!-- Glassmorphism Background (Clipped) -->
-        <div class="absolute inset-0 bg-black/60 backdrop-blur-xl" style="clip-path: url(#shield-clip);"></div>
-        
-        <!-- Border Overlay (SVG) -->
-        <svg class="absolute inset-0 w-full h-full pointer-events-none z-10" viewBox="0 0 24 24" preserveAspectRatio="none">
-            <path d="m12 1-9 3v8s0 7 9 11c9-4 9-11 9-11v-8z" fill="none" stroke="oklch(0.49 0.09 164.29)" stroke-width="0.3" vector-effect="non-scaling-stroke" />
-        </svg>
+    <!--
+      Responsive Sizing:
+      - Mobile: 100% - 16px (8px margin each side)
+      - Tablet: 100% - 32px (16px margin each side)
+      - Desktop: Max width 4xl (approx 896px)
+      Container Query: container-type: inline-size for text scaling
+    -->
+    <div
+      class="viking-shield-container relative h-[90svh] aspect-[3/4] flex flex-col items-center justify-center text-center animate-fade-in-up mx-auto"
+      style="filter: drop-shadow(0 20px 30px rgba(0,0,0,0.8)); container-type: inline-size;"
+    >
+      <!-- Glassmorphism Background (Clipped) -->
+      <!-- Darker background (bg-black/60) as requested. -->
+      <div
+        class="absolute inset-0 bg-black/60 backdrop-blur-3xl border border-white/10"
+        style="clip-path: url(#shield-clip);"
+      >
+      </div>
 
-        <!-- Content (Relative z-20 to sit on top) -->
-        <div class="relative z-20 w-full h-full flex flex-col items-center justify-center p-8 md:p-16 gap-6 md:gap-10 content-fade-in" style="animation-delay: 0.8s;">
-            <div class="mb-2 inline-block">
-              <span class="py-2 px-6 border-b border-viking-green text-light-cream font-display tracking-widest uppercase text-sm md:text-base shadow-sm">
-                {t('hero.subtitle')}
-              </span>
-            </div>
-            
-            <h1 class="text-5xl md:text-7xl font-display font-black text-light-cream drop-shadow-[0_4px_10px_rgba(0,0,0,0.8)] tracking-wider leading-tight">
-              {t('hero.title')}
-            </h1>
-            
-            <div class="flex flex-col gap-4 text-lg md:text-xl text-gray-200 font-bold tracking-wide w-full max-w-md mx-auto">
-                <div class="flex items-center justify-center gap-3 py-2 border-b border-white/10">
-                    <svg class="w-6 h-6 text-viking-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                    {getFormattedDateTime()}
-                </div>
-                <div class="flex items-center justify-center gap-3 py-2 border-b border-white/10">
-                    <svg class="w-6 h-6 text-viking-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                    {getFullLocation()}
-                </div>
-            </div>
+      <!-- Inner glow layer -->
+      <!-- Restored Green/Gold gradient -->
+      <div
+        class="absolute inset-0 bg-gradient-to-b from-viking-green/20 via-transparent to-viking-gold/20 pointer-events-none"
+        style="clip-path: url(#shield-clip);"
+      >
+      </div>
 
-            <!-- Countdown -->
-            <div id="countdown" class="grid grid-cols-4 gap-4 w-full max-w-md mx-auto text-light-cream" data-date={eventDate}>
-                <div class="flex flex-col items-center">
-                    <span class="text-3xl md:text-5xl font-display font-black text-viking-green drop-shadow-lg" id="days">00</span>
-                    <span class="text-xs uppercase tracking-widest text-gray-400">Dní</span>
-                </div>
-                <div class="flex flex-col items-center">
-                    <span class="text-3xl md:text-5xl font-display font-black text-viking-green drop-shadow-lg" id="hours">00</span>
-                    <span class="text-xs uppercase tracking-widest text-gray-400">Hod</span>
-                </div>
-                <div class="flex flex-col items-center">
-                    <span class="text-3xl md:text-5xl font-display font-black text-viking-green drop-shadow-lg" id="minutes">00</span>
-                    <span class="text-xs uppercase tracking-widest text-gray-400">Min</span>
-                </div>
-                <div class="flex flex-col items-center">
-                    <span class="text-3xl md:text-5xl font-display font-black text-viking-green drop-shadow-lg" id="seconds">00</span>
-                    <span class="text-xs uppercase tracking-widest text-gray-400">Sec</span>
-                </div>
-            </div>
-            
-            <Button 
-               href="#registration" 
-               variant="primary"
-               size="large"
-               class="hover:shadow-[0_0_25px_rgba(46,131,114,0.6)] w-full max-w-xs transform hover:-translate-y-1 transition-transform duration-300 mt-4"
-            >
-              {t('hero.cta')}
-            </Button>
+      <!-- Content (Relative z-20 to sit on top) -->
+      <div
+        class="relative z-20 w-full h-full flex flex-col items-center justify-center p-[6cqw] sm:p-[8cqw] md:p-[5rem] gap-[2.5cqw] sm:gap-[3cqw] md:gap-6 content-fade-in"
+        style="animation-delay: 0.8s;"
+      >
+        <div class="mb-[0.5cqw] block">
+          <span
+            class="py-2 px-4 border-b border-viking-gold/60 text-viking-gold font-display tracking-widest uppercase shadow-sm block"
+            style="font-size: clamp(10px, 2cqw, 16px);"
+          >
+            {t("hero.subtitle")}
+          </span>
         </div>
+
+        <h1
+          class="font-display font-black text-light-cream drop-shadow-[0_4px_10px_rgba(0,0,0,0.8)] tracking-wider leading-tight text-balance max-w-[90%] mx-auto"
+          style="font-size: clamp(24px, 8.5cqw, 72px);"
+        >
+          {t("hero.title")}
+        </h1>
+
+        <!-- Address and Date - Icons changed to Gold -->
+        <div
+          class="flex flex-col gap-[1.5cqw] text-gray-200 font-bold tracking-wide w-full max-w-[80%] mx-auto"
+          style="font-size: clamp(14px, 2.5cqw, 20px);"
+        >
+          <div class="flex items-center justify-center gap-3 py-1">
+            <svg
+              class="w-[3cqw] h-[3cqw] min-w-5 min-h-5 max-w-6 max-h-6 text-viking-gold"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+              ></path></svg
+            >
+            {getFormattedDateTime()}
+          </div>
+          <div class="flex items-center justify-center gap-3 py-1">
+            <svg
+              class="w-[3cqw] h-[3cqw] min-w-5 min-h-5 max-w-6 max-h-6 text-viking-gold"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+              ></path><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg
+            >
+            {getFullLocation()}
+          </div>
+        </div>
+
+        <!-- Countdown -->
+        <!-- Increased top margin (mt-[3cqw]) for spacing -->
+        <div
+          id="countdown"
+          class="grid grid-cols-4 w-full max-w-[70%] mx-auto"
+          data-date={eventDate}
+        >
+          <div class="flex flex-col items-center">
+            <span
+              class="font-display font-black text-white drop-shadow-lg"
+              style="font-size: clamp(20px, 6cqw, 48px);"
+              id="days">00</span
+            >
+            <span
+              class="uppercase tracking-widest text-viking-gold"
+              style="font-size: clamp(9px, 1.8cqw, 12px);">dní</span
+            >
+          </div>
+          <div class="flex flex-col items-center">
+            <span
+              class="font-display font-black text-white drop-shadow-lg"
+              style="font-size: clamp(20px, 6cqw, 48px);"
+              id="hours">00</span
+            >
+            <span
+              class="uppercase tracking-widest text-viking-gold"
+              style="font-size: clamp(9px, 1.8cqw, 12px);">hodin</span
+            >
+          </div>
+          <div class="flex flex-col items-center">
+            <span
+              class="font-display font-black text-white drop-shadow-lg"
+              style="font-size: clamp(20px, 6cqw, 48px);"
+              id="minutes">00</span
+            >
+            <span
+              class="uppercase tracking-widest text-viking-gold"
+              style="font-size: clamp(9px, 1.8cqw, 12px);">minut</span
+            >
+          </div>
+          <div class="flex flex-col items-center">
+            <span
+              class="font-display font-black text-white drop-shadow-lg"
+              style="font-size: clamp(20px, 6cqw, 48px);"
+              id="seconds">00</span
+            >
+            <span
+              class="uppercase tracking-widest text-viking-gold"
+              style="font-size: clamp(9px, 1.8cqw, 12px);">sekund</span
+            >
+          </div>
+        </div>
+
+        <Button
+          href="#registration"
+          variant="primary"
+          size="large"
+          class="hover:shadow-[0_0_25px_rgba(46,131,114,0.6)] w-full max-w-xs transform hover:-translate-y-1 transition-all duration-300 shadow-2xl relative z-30"
+        >
+          {t("hero.cta")}
+        </Button>
+      </div>
     </div>
   </div>
 
   <!-- Decorative Bottom Fade -->
-  <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-deep-charcoal to-transparent z-20"></div>
+  <div
+    class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-deep-charcoal to-transparent z-20"
+  >
+  </div>
 
   <!-- SVG Definition for ClipPath -->
   <svg width="0" height="0" class="absolute">
     <defs>
       <clipPath id="shield-clip" clipPathUnits="objectBoundingBox">
-        <path d="m12 1-9 3v8s0 7 9 11c9-4 9-11 9-11v-8z" transform="scale(0.04166666, 0.04166666)" />
+        <path
+          d="m12 1-9 3v8s0 7 9 11c9-4 9-11 9-11v-8z"
+          transform="scale(0.04166666, 0.04166666)"></path>
       </clipPath>
     </defs>
   </svg>
@@ -109,27 +213,38 @@ const eventDate = new Date(
 
 <script>
   function updateCountdown() {
-    const countdownElement = document.getElementById('countdown');
+    const countdownElement = document.getElementById("countdown");
     if (!countdownElement) return;
 
-    const targetDate = new Date(countdownElement.dataset.date).getTime();
+    const targetDateStr = countdownElement.dataset.date;
+    if (!targetDateStr) return;
+
+    const targetDate = new Date(targetDateStr).getTime();
     const now = new Date().getTime();
     const distance = targetDate - now;
 
     if (distance < 0) {
-      countdownElement.innerHTML = '<div class="col-span-4 text-xl font-display font-bold text-viking-green">Bitva začala!</div>';
+      countdownElement.innerHTML =
+        '<div class="col-span-4 text-xl font-display font-bold text-viking-gold">Bitva začala!</div>';
       return;
     }
 
     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const hours = Math.floor(
+      (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+    );
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    document.getElementById('days').innerText = String(days).padStart(2, '0');
-    document.getElementById('hours').innerText = String(hours).padStart(2, '0');
-    document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
-    document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+    const elDays = document.getElementById("days");
+    const elHours = document.getElementById("hours");
+    const elMinutes = document.getElementById("minutes");
+    const elSeconds = document.getElementById("seconds");
+
+    if (elDays) elDays.innerText = String(days).padStart(2, "0");
+    if (elHours) elHours.innerText = String(hours).padStart(2, "0");
+    if (elMinutes) elMinutes.innerText = String(minutes).padStart(2, "0");
+    if (elSeconds) elSeconds.innerText = String(seconds).padStart(2, "0");
   }
 
   updateCountdown();
@@ -137,31 +252,31 @@ const eventDate = new Date(
 </script>
 
 <style>
-    /* Viking Shield Entrance Animation */
-    .viking-shield-container {
-        animation: shield-enter 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-        transform-origin: center center;
-    }
+  /* Viking Shield Entrance Animation */
+  .viking-shield-container {
+    animation: shield-enter 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    transform-origin: center center;
+  }
 
-    @keyframes shield-enter {
-        0% {
-            transform: translateY(-100vh) scale(0);
-            opacity: 0;
-        }
-        100% {
-            transform: translateY(0) scale(1);
-            opacity: 1;
-        }
+  @keyframes shield-enter {
+    0% {
+      transform: translateY(-100vh) scale(0);
+      opacity: 0;
     }
+    100% {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+  }
 
-    .content-fade-in {
-        opacity: 0;
-        animation: fade-in 0.8s ease-out forwards;
-    }
+  .content-fade-in {
+    opacity: 0;
+    animation: fade-in 0.8s ease-out forwards;
+  }
 
-    @keyframes fade-in {
-        to {
-            opacity: 1;
-        }
+  @keyframes fade-in {
+    to {
+      opacity: 1;
     }
+  }
 </style>

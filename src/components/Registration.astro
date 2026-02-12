@@ -1,48 +1,73 @@
 ---
-import { useTranslations } from '../i18n/utils';
-import Button from './ui/Button.astro';
+import { useTranslations } from "../i18n/utils";
+import Button from "./ui/Button.astro";
 
 // Force CS
-const lang = 'cs';
+const lang = "cs";
 ---
 
-<section id="registration" class="py-32 relative overflow-hidden bg-deep-charcoal text-white scroll-mt-24">
-    <!-- Decorative Pattern Overlay -->
-    <div class="absolute inset-0 opacity-10" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23000000\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
-    
-    <div class="container mx-auto px-4 relative z-10 text-center">
-        <h2 class="text-4xl md:text-6xl font-display font-bold mb-8 drop-shadow-md">
-            Registrace Závodníků
+<section
+  id="registration"
+  class="py-32 relative overflow-hidden bg-deep-charcoal text-white scroll-mt-24"
+>
+  <!-- Decorative Pattern Overlay -->
+  <div
+    class="absolute inset-0 opacity-10"
+    style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23000000\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"
+  >
+  </div>
+
+  <div class="container mx-auto px-4 relative z-10 max-w-3xl text-center">
+    <div class="mb-12">
+      <div class="inline-flex items-center gap-4 mb-6">
+        <span class="h-1 w-12 bg-viking-gold"></span>
+        <h2
+          class="text-4xl md:text-5xl font-display font-bold text-light-cream"
+        >
+          Registrace Závodníků
         </h2>
-        
-        <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto font-medium opacity-90">
-             <span class="text-viking-green font-bold text-3xl block mb-2">Registrace otevřena do 30.04.2026</span>
-            Připrav se na bojiště. Čas se krátí. <br/>
-            <span class="block mt-4 text-lg md:text-xl italic text-white/80">
-                "Nezáleží na tom, kolik zvedneš teď. Záleží na tom, zda máš odvahu zkusit zvednout víc, než si myslíš, že dokážeš. 
-                Překonej sám sebe. Staň se legendou."
-            </span>
+        <span class="h-1 w-12 bg-viking-gold"></span>
+      </div>
+
+      <div class="space-y-4">
+        <p class="text-viking-green font-bold text-2xl md:text-3xl">
+          Registrace otevřena do 30.04.2026
         </p>
-        
-        <div class="bg-white/10 backdrop-blur-md rounded-none p-8 md:p-12 max-w-3xl mx-auto border border-white/20 shadow-2xl">
-           <p class="mb-8 text-lg font-bold">
-             Registrace probíhá online přes formulář
-           </p>
-           
-           <Button 
-             href="https://docs.google.com/forms/d/e/1FAIpQLSeozQgEQ6qN_sNz90AcjWIDdD4wrCdym3E20iCs4QO00IDrtg/viewform" 
-             target="_blank"
-             rel="noopener noreferrer"
-             variant="secondary"
-             size="large"
-             class="gap-3 shadow-xl w-full sm:w-auto"
-           >
-             <!-- Heroicon: Pencil Square -->
-             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-               <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
-             </svg>
-             Registrovat se
-           </Button>
-        </div>
+        <p class="text-xl text-gray-300">
+          Připrav se na bojiště. Čas se krátí.
+        </p>
+        <p class="text-lg md:text-xl italic text-gray-400">
+          "Nezáleží na tom, kolik zvedneš teď. Záleží na tom, zda máš odvahu
+          zkusit zvednout víc, než si myslíš, že dokážeš. Překonej sám sebe.
+          Staň se legendou."
+        </p>
+      </div>
     </div>
+
+    <Button
+      href="https://docs.google.com/forms/d/e/1FAIpQLSeozQgEQ6qN_sNz90AcjWIDdD4wrCdym3E20iCs4QO00IDrtg/viewform"
+      target="_blank"
+      rel="noopener noreferrer"
+      variant="primary"
+      size="large"
+      class="gap-3 shadow-xl"
+    >
+      <!-- Heroicon: Pencil Square -->
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="size-6"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
+        ></path>
+      </svg>
+      Registrovat se
+    </Button>
+  </div>
 </section>

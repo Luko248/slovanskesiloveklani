@@ -1,66 +1,78 @@
 ---
 // Force CS
-import Button from './ui/Button.astro';
-const lang = 'cs';
+import Button from "./ui/Button.astro";
+const lang = "cs";
 
 const images = [
-    '/images/gallery/2025_slovanske_silove_klani-15.avif',
-    '/images/gallery/2025_slovanske_silove_klani-33.avif',
-    '/images/gallery/2025_slovanske_silove_klani-51.avif',
-    '/images/gallery/2025_slovanske_silove_klani-57.avif',
-    '/images/gallery/2025_slovanske_silove_klani-59.avif',
-    '/images/gallery/2025_slovanske_silove_klani-7.avif',
+  "/images/gallery/2025_slovanske_silove_klani-15.avif",
+  "/images/gallery/2025_slovanske_silove_klani-33.avif",
+  "/images/gallery/2025_slovanske_silove_klani-51.avif",
+  "/images/gallery/2025_slovanske_silove_klani-57.avif",
+  "/images/gallery/2025_slovanske_silove_klani-59.avif",
+  "/images/gallery/2025_slovanske_silove_klani-7.avif",
 ];
 ---
 
 <section id="gallery" class="py-32 bg-deep-charcoal relative scroll-mt-24">
-    <div class="container mx-auto px-4 relative z-10">
-        <h2 class="text-4xl md:text-5xl font-display font-bold text-center text-viking-green mb-12 drop-shadow-md">
-            Galerie Minulých Ročníků
+  <div class="container mx-auto px-4 relative z-10">
+    <div class="text-center mb-16">
+      <div class="inline-flex items-center gap-4 mb-6">
+        <span class="h-1 w-12 bg-viking-gold"></span>
+        <h2
+          class="text-4xl md:text-5xl font-display font-bold text-light-cream"
+        >
+          Galerie Minulých Ročníků
         </h2>
-        <p class="text-lg text-gray-400 max-w-2xl mx-auto text-center mb-12">
-            Ohlédnutí za předchozími ročníky. Krev, pot a železo.
-        </p>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {images.map((img, idx) => (
-                <a 
-                    href={img} 
-                    data-fancybox="gallery" 
-                    data-caption="Slovanské Silové Klání"
-                    class="group relative aspect-[4/3] rounded-none overflow-hidden shadow-xl cursor-pointer block"
-                >
-                    <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-all duration-500 z-10 pointer-events-none"></div>
-                    
-                    <img 
-                        src={img} 
-                        alt={`Galerie ${idx + 1}`} 
-                        class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110 grayscale-[50%] group-hover:grayscale-0"
-                        loading="lazy"
-                    />
-                    
-                    <div class="absolute bottom-0 left-0 w-full p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-20 bg-gradient-to-t from-black/90 to-transparent pointer-events-none">
-                        <span class="text-white font-display text-lg tracking-wide border-l-4 border-viking-green pl-3">Slovanské Silové Klání</span>
-                    </div>
-
-                    <div class="absolute inset-0 border-4 border-transparent group-hover:border-viking-green/50 transition-colors duration-300 z-20 rounded-none pointer-events-none"></div>
-                </a>
-            ))}
-        </div>
-
-        <div class="mt-16 text-center">
-            <Button 
-                href="https://musilova.pixellu.gallery/slovanske_silove_klani_2025/all"
-                target="_blank"
-                rel="noopener noreferrer"
-                variant="secondary"
-                size="default"
-                class="shadow-xl"
-            >
-                Zobrazit celou galerii 2025
-            </Button>
-        </div>
+        <span class="h-1 w-12 bg-viking-gold"></span>
+      </div>
+      <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+        Ohlédnutí za předchozími ročníky. Krev, pot a železo.
+      </p>
     </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {
+        images.map((img, idx) => (
+          <a
+            href={img}
+            data-fancybox="gallery"
+            data-caption="Slovanské Silové Klání"
+            class="gallery-photo group relative aspect-[4/3] shadow-xl cursor-pointer block"
+          >
+            <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-all duration-500 z-10 pointer-events-none" />
+
+            <img
+              src={img}
+              alt={`Galerie ${idx + 1}`}
+              class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110 grayscale-[50%] group-hover:grayscale-0"
+              loading="lazy"
+            />
+
+            <div class="absolute bottom-0 left-0 w-full p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-20 bg-gradient-to-t from-black/90 to-transparent pointer-events-none">
+              <span class="text-white font-display text-lg tracking-wide border-l-4 border-viking-green pl-3">
+                Slovanské Silové Klání
+              </span>
+            </div>
+
+            <div class="absolute inset-0 border-2 border-transparent group-hover:border-viking-green/50 transition-colors duration-300 z-20 pointer-events-none gallery-photo" />
+          </a>
+        ))
+      }
+    </div>
+
+    <div class="mt-16 text-center">
+      <Button
+        href="https://musilova.pixellu.gallery/slovanske_silove_klani_2025/all"
+        target="_blank"
+        rel="noopener noreferrer"
+        variant="secondary"
+        size="default"
+        class="shadow-xl"
+      >
+        Zobrazit celou galerii 2025
+      </Button>
+    </div>
+  </div>
 </section>
 
 <script>
