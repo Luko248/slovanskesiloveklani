@@ -1,9 +1,25 @@
 ---
 ---
 
-<div class="w-full relative h-[60px] bg-deep-charcoal" role="separator" aria-hidden="true">
-    <!-- SVG Pattern -->
-    <div class="w-full h-full bg-repeat-x bg-center" 
-         style="background-image: url('/images/pattern.svg'); background-size: auto 100%;">
+<div class="separator-wrapper w-full relative h-[60px] bg-deep-charcoal overflow-hidden" role="separator" aria-hidden="true">
+    <div class="separator-track w-full h-full bg-repeat-x bg-center"
+         style="background-image: url('/images/pattern.svg'); background-size: auto 100%; min-width: 200%;">
     </div>
 </div>
+
+<style>
+  @keyframes separator-slide {
+    from {
+      translate: 0 0;
+    }
+    to {
+      translate: -25% 0;
+    }
+  }
+
+  .separator-track {
+    animation: separator-slide linear;
+    animation-timeline: view();
+    animation-range: entry 0% exit 100%;
+  }
+</style>
