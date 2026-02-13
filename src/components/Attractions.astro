@@ -133,20 +133,29 @@ const total = slides.length.toString().padStart(2, "0");
 </section>
 
 <style>
-  /* ── Carousel track ── */
+  /* ── Carousel track — scroll-snap for touch, translateX for radio ── */
   .carousel-track {
-    overflow: hidden;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
     position: relative;
+  }
+
+  .carousel-track::-webkit-scrollbar {
+    display: none;
   }
 
   .carousel-slides {
     display: flex;
-    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .carousel-item {
     inline-size: 100%;
     flex-shrink: 0;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
   }
 
   /* ── Golden ratio layout: text 38.2% / image 61.8% ── */
@@ -184,19 +193,7 @@ const total = slides.length.toString().padStart(2, "0");
     }
   }
 
-  /* ── Slide positioning via radio state ── */
-  #attr-1:checked ~ .carousel-track .carousel-slides {
-    transform: translateX(0%);
-  }
-  #attr-2:checked ~ .carousel-track .carousel-slides {
-    transform: translateX(-100%);
-  }
-  #attr-3:checked ~ .carousel-track .carousel-slides {
-    transform: translateX(-200%);
-  }
-  #attr-4:checked ~ .carousel-track .carousel-slides {
-    transform: translateX(-300%);
-  }
+  /* Slide positioning handled by scroll-snap + JS sync */
 
   /* ── Line indicators ── */
   .carousel-nav {
@@ -280,3 +277,33 @@ const total = slides.length.toString().padStart(2, "0");
     }
   }
 </style>
+
+<script>
+  const track = document.querySelector('.carousel-track') as HTMLElement;
+  const radios = document.querySelectorAll<HTMLInputElement>('input[name="attraction"]');
+  const items = document.querySelectorAll('.carousel-item');
+
+  // Click radio → scroll to slide
+  radios.forEach((radio, i) => {
+    radio.addEventListener('change', () => {
+      const target = items[i] as HTMLElement;
+      if (target) {
+        track.scrollTo({ left: target.offsetLeft, behavior: 'smooth' });
+      }
+    });
+  });
+
+  // Swipe/scroll → sync radio
+  let scrollTimer: ReturnType<typeof setTimeout>;
+  track.addEventListener('scroll', () => {
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(() => {
+      const scrollLeft = track.scrollLeft;
+      const width = track.offsetWidth;
+      const index = Math.round(scrollLeft / width);
+      if (radios[index] && !radios[index].checked) {
+        radios[index].checked = true;
+      }
+    }, 50);
+  });
+</script>
