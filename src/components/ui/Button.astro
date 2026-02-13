@@ -38,6 +38,6 @@ const classes = [baseStyles, variants[variant], sizes[size], className].join(
 const Element = href ? "a" : "button";
 ---
 
-<Element href={href} class={classes} {...rest}>
+<Element href={href} class={classes} style="text-box: trim-both ex alphabetic;" {...rest}>
   <slot />
 </Element>
