@@ -185,7 +185,7 @@ const eventDate = new Date(
           href="#registration"
           variant="primary"
           size="large"
-          class="hover:shadow-[0_0_25px_rgba(46,131,114,0.6)] w-full max-w-xs transform hover:-translate-y-1 transition-all duration-300 shadow-2xl relative z-30"
+          class="hero-cta hover:shadow-[0_0_25px_rgba(46,131,114,0.6)] w-full max-w-xs transform hover:-translate-y-1 transition-all duration-300 shadow-2xl relative z-30"
         >
           {t("hero.cta")}
         </Button>
@@ -266,6 +266,13 @@ const eventDate = new Date(
     100% {
       transform: translateY(0) scale(1);
       opacity: 1;
+    }
+  }
+
+  /* Shield CTA — shift down on mobile to fit inside shield bottom */
+  @media (max-width: 767px) {
+    .hero-cta {
+      translate: 0 5svh;
     }
   }
 
