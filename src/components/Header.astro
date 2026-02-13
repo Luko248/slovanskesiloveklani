@@ -83,37 +83,39 @@ const navItems = [
     </div>
   </div>
 
-  <!-- Mobile Menu Overlay -->
-  <div
-    id="mobile-menu"
-    class="mobile-menu fixed top-[72px] left-0 w-full h-[calc(100dvh-72px)] bg-deep-charcoal/95 backdrop-blur-xl z-40 flex flex-col overflow-y-auto border-t border-viking-green/20"
-  >
-    <nav class="flex flex-col items-center justify-center flex-1 gap-2 px-6 py-8">
-      {
-        navItems.map((item, idx) => (
-          <a
-            href={item.href}
-            class="mobile-link font-display text-2xl font-bold text-center py-4 text-light-cream hover:text-viking-green transition-colors w-full border-b border-white/5"
-            style={`--delay: ${idx * 0.05}s`}
-          >
-            {item.label}
-          </a>
-        ))
-      }
-      <div class="mt-8 w-full max-w-xs mx-auto">
-        <Button
-          id="mobile-calendar-btn"
-          variant="secondary"
-          size="default"
-          class="w-full h-12 mobile-link"
-          style="--delay: 0.25s"
-        >
-          Přidat do kalendáře
-        </Button>
-      </div>
-    </nav>
-  </div>
+
 </header>
+
+<!-- Mobile Menu Overlay — outside header to allow independent backdrop-filter -->
+<div
+  id="mobile-menu"
+  class="mobile-menu fixed top-[72px] left-0 w-full h-[calc(100dvh-72px)] z-40 flex flex-col overflow-y-auto bg-black/70 backdrop-blur-lg"
+>
+  <nav class="flex flex-col items-center justify-center flex-1 gap-2 px-6 py-8">
+    {
+      navItems.map((item, idx) => (
+        <a
+          href={item.href}
+          class="mobile-link font-display text-2xl font-bold text-center py-4 text-light-cream hover:text-viking-green transition-colors w-full"
+          style={`--delay: ${idx * 0.05}s`}
+        >
+          {item.label}
+        </a>
+      ))
+    }
+    <div class="mt-8 w-full max-w-xs mx-auto">
+      <Button
+        id="mobile-calendar-btn"
+        variant="secondary"
+        size="default"
+        class="w-full h-12 mobile-link"
+        style="--delay: 0.25s"
+      >
+        Přidat do kalendáře
+      </Button>
+    </div>
+  </nav>
+</div>
 
 <style>
   /* ── Burger lines ── */
@@ -189,14 +191,25 @@ const navItems = [
     burger?.classList.add("is-active");
     burger?.setAttribute("aria-expanded", "true");
     menu?.classList.add("is-open");
+    document.documentElement.style.overflow = "hidden";
     document.body.style.overflow = "hidden";
+    document.body.style.position = "fixed";
+    document.body.style.insetInline = "0";
+    document.body.dataset.scrollY = String(window.scrollY);
+    document.body.style.top = `-${window.scrollY}px`;
   }
 
   function closeMenu() {
     burger?.classList.remove("is-active");
     burger?.setAttribute("aria-expanded", "false");
     menu?.classList.remove("is-open");
+    document.documentElement.style.overflow = "";
     document.body.style.overflow = "";
+    document.body.style.position = "";
+    document.body.style.insetInline = "";
+    document.body.style.top = "";
+    const scrollY = Number(document.body.dataset.scrollY || 0);
+    window.scrollTo(0, scrollY);
   }
 
   function toggleMenu() {
