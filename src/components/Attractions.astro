@@ -50,115 +50,73 @@ const total = slides.length.toString().padStart(2, "0");
       </p>
     </div>
 
-    <!-- CSS-only Carousel — scroll-snap + radio indicators -->
-    <div class="attractions-carousel max-w-4xl mx-auto">
-      <!-- Hidden radio inputs for slide control -->
-      <input
-        type="radio"
-        name="attraction"
-        id="attr-1"
-        class="sr-only peer/s1"
-        checked
-      />
-      <input
-        type="radio"
-        name="attraction"
-        id="attr-2"
-        class="sr-only peer/s2"
-      />
-      <input
-        type="radio"
-        name="attraction"
-        id="attr-3"
-        class="sr-only peer/s3"
-      />
-      <input
-        type="radio"
-        name="attraction"
-        id="attr-4"
-        class="sr-only peer/s4"
-      />
+    <!-- CSS-only Carousel — scroll-snap + ::scroll-marker -->
+    <div class="carousel max-w-4xl mx-auto">
+      {
+        slides.map((slide, idx) => (
+          <div class="carousel__slide">
+            <div class="carousel-layout">
+              {/* Text side */}
+              <div class="carousel-text">
+                <div class="inline-flex items-center gap-3">
+                  <span class="h-1 w-8 bg-viking-gold" />
+                  <span class="text-viking-gold font-display text-sm uppercase tracking-widest">
+                    {`0${idx + 1} / ${total}`}
+                  </span>
+                </div>
+                <h3 class="text-3xl md:text-4xl font-display font-bold text-light-cream">
+                  {slide.title}
+                </h3>
+                <p class="text-lg leading-relaxed text-gray-400">
+                  {slide.description}
+                </p>
+              </div>
 
-      <!-- Carousel track -->
-      <div class="carousel-track">
-        <div class="carousel-slides">
-          {
-            slides.map((slide, idx) => (
-              <div class="carousel-item">
-                <div class="carousel-layout">
-                  {/* Text side — golden ratio narrow */}
-                  <div class="carousel-text">
-                    <div class="inline-flex items-center gap-3">
-                      <span class="h-1 w-8 bg-viking-gold" />
-                      <span class="text-viking-gold font-display text-sm uppercase tracking-widest">
-                        {`0${idx + 1} / ${total}`}
-                      </span>
-                    </div>
-                    <h3 class="text-3xl md:text-4xl font-display font-bold text-light-cream">
-                      {slide.title}
-                    </h3>
-                    <p class="text-lg leading-relaxed text-gray-400">
-                      {slide.description}
-                    </p>
-                  </div>
-
-                  {/* Image side — golden ratio wide */}
-                  <div class="carousel-image">
-                    <div class="relative category-card overflow-hidden aspect-[4/3] border border-viking-green/20">
-                      <img
-                        src={slide.image}
-                        alt={slide.title}
-                        class="w-full h-full object-cover"
-                        loading="lazy"
-                      />
-                      <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
-                    </div>
-                  </div>
+              {/* Image side */}
+              <div class="carousel-image">
+                <div class="relative category-card overflow-hidden aspect-[4/3] border border-viking-green/20">
+                  <img
+                    src={slide.image}
+                    alt={slide.title}
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
                 </div>
               </div>
-            ))
-          }
-        </div>
-      </div>
-
-      <!-- Line indicators -->
-      <nav class="carousel-nav" aria-label="Carousel navigation">
-        <label for="attr-1" class="carousel-line" aria-label="Slide 1"></label>
-        <label for="attr-2" class="carousel-line" aria-label="Slide 2"></label>
-        <label for="attr-3" class="carousel-line" aria-label="Slide 3"></label>
-        <label for="attr-4" class="carousel-line" aria-label="Slide 4"></label>
-      </nav>
+            </div>
+          </div>
+        ))
+      }
     </div>
   </div>
 </section>
 
 <style>
-  /* ── Carousel track — scroll-snap for touch, translateX for radio ── */
-  .carousel-track {
+  /* ── CSS-only Carousel using scroll-snap + ::scroll-marker ── */
+
+  .carousel {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 100%;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
-    position: relative;
+    scroll-marker-group: after;
   }
 
-  .carousel-track::-webkit-scrollbar {
+  .carousel::-webkit-scrollbar {
     display: none;
   }
 
-  .carousel-slides {
-    display: flex;
-  }
-
-  .carousel-item {
-    inline-size: 100%;
-    flex-shrink: 0;
+  .carousel__slide {
     scroll-snap-align: start;
     scroll-snap-stop: always;
   }
 
-  /* ── Golden ratio layout: text 38.2% / image 61.8% ── */
+  /* ── Slide layout: 1:1 columns ── */
   .carousel-layout {
     display: grid;
     grid-template-columns: 1fr;
@@ -193,117 +151,31 @@ const total = slides.length.toString().padStart(2, "0");
     }
   }
 
-  /* Slide positioning handled by scroll-snap + JS sync */
-
-  /* ── Line indicators ── */
-  .carousel-nav {
+  /* ── Scroll marker group — line indicators ── */
+  .carousel::scroll-marker-group {
     display: flex;
     justify-content: center;
     gap: 0.75rem;
-    margin-block-start: 2.5rem;
+    padding-block-start: 2.5rem;
   }
 
-  .carousel-line {
+  .carousel__slide::scroll-marker {
+    content: "";
     inline-size: 1.5rem;
     block-size: 3px;
     background-color: var(--color-viking-gold);
     opacity: 0.3;
-    cursor: pointer;
     scale: 1;
     transition: opacity 0.3s ease, scale 0.3s ease;
+    cursor: pointer;
   }
 
-  .carousel-line:hover {
+  .carousel__slide::scroll-marker:hover {
     opacity: 0.6;
   }
 
-  /* Active line states */
-  #attr-1:checked ~ .carousel-nav .carousel-line:nth-child(1),
-  #attr-2:checked ~ .carousel-nav .carousel-line:nth-child(2),
-  #attr-3:checked ~ .carousel-nav .carousel-line:nth-child(3),
-  #attr-4:checked ~ .carousel-nav .carousel-line:nth-child(4) {
+  .carousel__slide::scroll-marker:target-current {
     opacity: 1;
     scale: 1.5 1;
   }
-
-  /* ── Progressive enhancement: native CSS carousel ── */
-  @supports (scroll-marker-group: after) {
-    .carousel-nav {
-      display: none;
-    }
-
-    .carousel-track {
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
-      scrollbar-width: none;
-      scroll-marker-group: after;
-    }
-
-    .carousel-track::-webkit-scrollbar {
-      display: none;
-    }
-
-    .carousel-slides {
-      transition: none;
-      transform: none !important;
-    }
-
-    .carousel-item {
-      scroll-snap-align: start;
-      scroll-snap-stop: always;
-    }
-
-    .carousel-track::scroll-marker-group {
-      display: flex;
-      justify-content: center;
-      gap: 0.75rem;
-      padding-block-start: 2.5rem;
-    }
-
-    .carousel-item::scroll-marker {
-      content: "";
-      inline-size: 1.5rem;
-      block-size: 3px;
-      background-color: var(--color-viking-gold);
-      opacity: 0.3;
-      scale: 1;
-      transition: opacity 0.3s ease, scale 0.3s ease;
-    }
-
-    .carousel-item::scroll-marker:target-current {
-      opacity: 1;
-      scale: 1.5 1;
-    }
-  }
 </style>
-
-<script>
-  const track = document.querySelector('.carousel-track') as HTMLElement;
-  const radios = document.querySelectorAll<HTMLInputElement>('input[name="attraction"]');
-  const items = document.querySelectorAll('.carousel-item');
-
-  // Click radio → scroll to slide
-  radios.forEach((radio, i) => {
-    radio.addEventListener('change', () => {
-      const target = items[i] as HTMLElement;
-      if (target) {
-        track.scrollTo({ left: target.offsetLeft, behavior: 'smooth' });
-      }
-    });
-  });
-
-  // Swipe/scroll → sync radio
-  let scrollTimer: ReturnType<typeof setTimeout>;
-  track.addEventListener('scroll', () => {
-    clearTimeout(scrollTimer);
-    scrollTimer = setTimeout(() => {
-      const scrollLeft = track.scrollLeft;
-      const width = track.offsetWidth;
-      const index = Math.round(scrollLeft / width);
-      if (radios[index] && !radios[index].checked) {
-        radios[index].checked = true;
-      }
-    }, 50);
-  });
-</script>

@@ -4,12 +4,12 @@ import Button from "./ui/Button.astro";
 const lang = "cs";
 
 const images = [
-  "/images/gallery/2025_slovanske_silove_klani-15.avif",
-  "/images/gallery/2025_slovanske_silove_klani-33.avif",
-  "/images/gallery/2025_slovanske_silove_klani-51.avif",
-  "/images/gallery/2025_slovanske_silove_klani-57.avif",
-  "/images/gallery/2025_slovanske_silove_klani-59.avif",
-  "/images/gallery/2025_slovanske_silove_klani-7.avif",
+  { src: "/images/gallery/2025_slovanske_silove_klani-15.avif", alt: "Tradiční kovář u výhně" },
+  { src: "/images/gallery/2025_slovanske_silove_klani-33.avif", alt: "Tým závodníků v dresech" },
+  { src: "/images/gallery/2025_slovanske_silove_klani-10.avif", alt: "Rodinná atmosféra na akci" },
+  { src: "/images/gallery/2025_slovanske_silove_klani-57.avif", alt: "Zvedání klády na stanovišti" },
+  { src: "/images/gallery/2025_slovanske_silove_klani-59.avif", alt: "Banner klání s bojovníky" },
+  { src: "/images/gallery/2025_slovanske_silove_klani-7.avif", alt: "Historický slovanský boj" },
 ];
 ---
 
@@ -32,18 +32,18 @@ const images = [
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {
-        images.map((img, idx) => (
+        images.map((img) => (
           <a
-            href={img}
+            href={img.src}
             data-fancybox="gallery"
-            data-caption="Zobrazit"
+            data-caption={img.alt}
             class="gallery-photo group relative aspect-[4/3] shadow-xl cursor-pointer block"
           >
             <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-all duration-500 z-10 pointer-events-none" />
 
             <img
-              src={img}
-              alt={`Galerie ${idx + 1}`}
+              src={img.src}
+              alt={img.alt}
               class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110"
               loading="lazy"
             />
