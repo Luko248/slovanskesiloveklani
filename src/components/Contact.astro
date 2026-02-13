@@ -23,7 +23,7 @@ import Button from "./ui/Button.astro";
 
     <!-- Contact Card -->
     <div
-      class="category-card border border-viking-green/20 bg-deep-charcoal overflow-hidden"
+      class="group category-card border-8 border-double border-viking-green/40 hover:border-viking-gold transition-colors duration-300 bg-deep-charcoal overflow-hidden"
     >
       <div class="contact-layout">
         <!-- Text side -->
@@ -73,11 +73,11 @@ import Button from "./ui/Button.astro";
         </div>
 
         <!-- Photo side -->
-        <div class="relative aspect-[4/3] md:aspect-auto order-1 md:order-2">
+        <div class="relative aspect-[4/3] md:aspect-auto order-1 md:order-2 overflow-hidden">
           <img
             src="/images/contact/marek-contact.avif"
             alt="Marek Vidlář — organizátor Slovanského Silového Klání"
-            class="w-full h-full object-cover"
+            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
             loading="lazy"
           />
           <div

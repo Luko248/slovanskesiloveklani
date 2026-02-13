@@ -74,7 +74,7 @@ const total = slides.length.toString().padStart(2, "0");
 
               {/* Image side */}
               <div class="carousel-image">
-                <div class="relative category-card overflow-hidden aspect-[4/3] border border-viking-green/20">
+                <div class={`relative category-card overflow-hidden aspect-[4/3] border-8 border-double ${idx % 2 === 0 ? 'border-viking-green/40' : 'border-viking-gold/40'}`}>
                   <img
                     src={slide.image}
                     alt={slide.title}

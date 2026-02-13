@@ -97,15 +97,25 @@ button:hover {
   transform: scale(1.02);
 }
 
-/* Category Card Scoop Corners */
-.category-card {
-  border-radius: 1rem;
-  corner-shape: scoop;
+/* Gallery Photo base */
+.gallery-photo {
+  overflow: hidden;
 }
 
-/* Gallery Photo Scoop Corners */
-.gallery-photo {
-  border-radius: 0.75rem;
-  corner-shape: scoop;
-  overflow: hidden;
+/* Scoop corners — only when supported */
+@supports (corner-shape: scoop) {
+  .category-card {
+    border-radius: 1rem;
+    corner-shape: scoop;
+  }
+
+  .gallery-photo {
+    border-radius: 0.75rem;
+    corner-shape: scoop;
+  }
+
+  .scoop-badge {
+    border-radius: 8px;
+    corner-shape: scoop;
+  }
 }
