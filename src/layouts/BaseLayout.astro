@@ -73,16 +73,37 @@ const websiteSchema = {
   "url": siteUrl,
   "inLanguage": "cs"
 };
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Domů",
+      "item": siteUrl
+    }
+  ]
+};
 ---
 
 <!doctype html>
 <html lang={lang} class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="keywords" content="silová soutěž, strongman, amatérská soutěž, Pustiměř, slovanské klání, silový sport, zvedání kamenů, klád, železa" />
+
+    <!-- Canonical & Alternate -->
     <link rel="canonical" href={siteUrl} />
+    <link rel="alternate" hreflang="cs" href={siteUrl} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="any" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
@@ -90,6 +111,7 @@ const websiteSchema = {
     <meta property="og:description" content={description} />
     <meta property="og:url" content={siteUrl} />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Slovanské Silové Klání — amatérská silová soutěž" />
@@ -103,22 +125,31 @@ const websiteSchema = {
     <meta name="twitter:image" content={ogImage} />
     <meta name="twitter:image:alt" content="Slovanské Silové Klání — amatérská silová soutěž" />
 
-    <!-- Additional SEO -->
-    <meta name="robots" content="index, follow" />
+    <!-- SEO -->
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="author" content="Marek Vidlář" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Mobile / PWA -->
     <meta name="theme-color" content="#1a1a1a" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <!-- Geo -->
+    <meta name="geo.region" content="CZ-64" />
+    <meta name="geo.placename" content="Pustiměř" />
+    <meta name="geo.position" content="49.317780;17.028537" />
+    <meta name="ICBM" content="49.317780, 17.028537" />
 
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=MedievalSharp&display=swap" rel="stylesheet">
-
-    <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=MedievalSharp&display=swap" rel="stylesheet" />
 
     <!-- Schema.org Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify(eventSchema)} />
     <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   </head>
   <body class="min-h-screen flex flex-col relative overflow-x-hidden bg-slavic-pattern">
     <slot />
