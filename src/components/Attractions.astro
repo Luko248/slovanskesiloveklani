@@ -247,62 +247,64 @@ const total = slides.length.toString().padStart(2, "0");
 </style>
 
 <script>
-  const supports = (condition: string) => {
-    try {
-      return CSS.supports(condition);
-    } catch {
-      return false;
+  (() => {
+    const supports = (condition: string) => {
+      try {
+        return CSS.supports(condition);
+      } catch {
+        return false;
+      }
+    };
+
+    // Some browsers parse parts of the feature but do not render native markers.
+    const hasNativeScrollMarkers =
+      CSS.supports('scroll-marker-group', 'after') &&
+      supports('selector(::scroll-marker-group)') &&
+      supports('selector(::scroll-marker)');
+
+    const carousel = document.querySelector('.carousel') as HTMLElement | null;
+    const markersContainer = document.querySelector('.carousel-markers') as HTMLElement | null;
+    if (!carousel || !markersContainer) {
+      return;
     }
-  };
 
-  // Some browsers parse parts of the feature but do not render native markers.
-  const hasNativeScrollMarkers =
-    CSS.supports('scroll-marker-group', 'after') &&
-    supports('selector(::scroll-marker-group)') &&
-    supports('selector(::scroll-marker)');
+    if (hasNativeScrollMarkers) {
+      carousel.classList.add('carousel--native-markers');
+      return;
+    }
 
-  const carousel = document.querySelector('.carousel') as HTMLElement | null;
-  const markersContainer = document.querySelector('.carousel-markers') as HTMLElement | null;
-  if (!carousel || !markersContainer) {
-    return;
-  }
+    const slides = carousel.querySelectorAll('.carousel__slide');
+    const buttons = markersContainer.querySelectorAll('button');
 
-  if (hasNativeScrollMarkers) {
-    carousel.classList.add('carousel--native-markers');
-    return;
-  }
-
-  const slides = carousel.querySelectorAll('.carousel__slide');
-  const buttons = markersContainer.querySelectorAll('button');
-
-  // Click → scroll to slide
-  buttons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const idx = Number(btn.dataset.slideIndex);
-      (slides[idx] as HTMLElement).scrollIntoView({
-        behavior: 'smooth',
-        block: 'nearest',
-        inline: 'start',
+    // Click → scroll to slide
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const idx = Number(btn.dataset.slideIndex);
+        (slides[idx] as HTMLElement).scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest',
+          inline: 'start',
+        });
       });
     });
-  });
 
-  // Scroll → update active marker
-  const observer = new IntersectionObserver(
-    (entries) => {
-      for (const entry of entries) {
-        if (entry.isIntersecting) {
-          const idx = Array.from(slides).indexOf(entry.target);
-          buttons.forEach((btn, i) => {
-            const isActive = i === idx;
-            btn.classList.toggle('active', isActive);
-            btn.setAttribute('aria-selected', String(isActive));
-          });
+    // Scroll → update active marker
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            const idx = Array.from(slides).indexOf(entry.target);
+            buttons.forEach((btn, i) => {
+              const isActive = i === idx;
+              btn.classList.toggle('active', isActive);
+              btn.setAttribute('aria-selected', String(isActive));
+            });
+          }
         }
-      }
-    },
-    { root: carousel, threshold: 0.5 },
-  );
+      },
+      { root: carousel, threshold: 0.5 },
+    );
 
-  slides.forEach((slide) => observer.observe(slide));
+    slides.forEach((slide) => observer.observe(slide));
+  })();
 </script>
