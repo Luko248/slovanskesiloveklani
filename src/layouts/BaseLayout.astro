@@ -10,12 +10,20 @@ interface Props {
 
 const {
   title,
-  description = "5. ročník amatérské silové soutěže v Pustiměři. Originální disciplíny, doprovodný program, lukostřelba, kovářská dílna a grilování.",
+  description = "Slovanské Silové Klání 2026 v Pustiměři: amatérská strongman soutěž, originální disciplíny, doprovodný program, lukostřelba, kovářská dílna a grilování.",
   lang = "cs",
 } = Astro.props;
 
 const siteUrl = "https://slovanskesiloveklani.cz";
 const ogImage = `${siteUrl}/images/meta.jpg`;
+const seoTitle = title.trim();
+const seoDescription = description.trim();
+const faviconVersion = "20260214";
+const faviconIco = `/favicons/favicon.ico?v=${faviconVersion}`;
+const faviconSvg = `/favicons/favicon.svg?v=${faviconVersion}`;
+const faviconPng96 = `/favicons/favicon-96x96.png?v=${faviconVersion}`;
+const appleTouchIcon = `/favicons/apple-touch-icon.png?v=${faviconVersion}`;
+const webManifest = `/manifest.json?v=${faviconVersion}`;
 
 const { date, time, location } = EVENT_CONFIG;
 const startDate = `${date.year}-${String(date.month).padStart(2, '0')}-${String(date.day).padStart(2, '0')}T${String(time.startHour).padStart(2, '0')}:${String(time.startMinute).padStart(2, '0')}:00+02:00`;
@@ -25,7 +33,7 @@ const eventSchema = {
   "@context": "https://schema.org",
   "@type": "SportsEvent",
   "name": EVENT_CONFIG.title,
-  "description": description,
+  "description": seoDescription,
   "startDate": startDate,
   "endDate": endDate,
   "eventStatus": "https://schema.org/EventScheduled",
@@ -93,8 +101,8 @@ const breadcrumbSchema = {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title}</title>
-    <meta name="description" content={description} />
+    <title>{seoTitle}</title>
+    <meta name="description" content={seoDescription} />
     <meta name="keywords" content="silová soutěž, silová soutěž Morava, strongman, strongman Česko, amatérská soutěž, amatérský strongman, Pustiměř, slovanské klání, Slovanské Silové Klání, silové klání 2026, silový sport, silák soutěž, zvedání kamenů, klád, železa, Morava, Vyškov" />
 
     <!-- Canonical & Alternate -->
@@ -102,17 +110,18 @@ const breadcrumbSchema = {
     <link rel="alternate" hreflang="cs" href={siteUrl} />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/favicons/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="/favicons/favicon.svg" />
-    <link rel="shortcut icon" href="/favicons/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+    <link rel="icon" href={faviconIco} sizes="any" />
+    <link rel="icon" type="image/png" href={faviconPng96} sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href={faviconSvg} />
+    <link rel="shortcut icon" href={faviconIco} />
+    <link rel="apple-touch-icon" sizes="180x180" href={appleTouchIcon} />
     <meta name="apple-mobile-web-app-title" content="SlovanskeSiloveKlani" />
-    <link rel="manifest" href="/manifest.json" />
+    <link rel="manifest" href={webManifest} />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
+    <meta property="og:title" content={seoTitle} />
+    <meta property="og:description" content={seoDescription} />
     <meta property="og:url" content={siteUrl} />
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:type" content="image/jpeg" />
@@ -124,8 +133,8 @@ const breadcrumbSchema = {
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
+    <meta name="twitter:title" content={seoTitle} />
+    <meta name="twitter:description" content={seoDescription} />
     <meta name="twitter:image" content={ogImage} />
     <meta name="twitter:image:alt" content="Slovanské Silové Klání — amatérská silová soutěž" />
 
