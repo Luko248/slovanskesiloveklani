@@ -1,25 +1,43 @@
 ---
+interface Props {
+  reverse?: boolean;
+}
+
+const { reverse = false } = Astro.props;
 ---
 
-<div class="separator-wrapper w-full relative h-[60px] bg-deep-charcoal overflow-hidden" role="separator" aria-hidden="true">
-    <div class="separator-track w-full h-full bg-repeat-x bg-center"
-         style="background-image: url('/images/pattern.svg'); background-size: auto 100%; min-width: 200%;">
-    </div>
+<div
+  class="separator-wrapper w-full relative h-[60px] bg-deep-charcoal overflow-hidden"
+  role="separator"
+  aria-hidden="true"
+  style="mask: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);"
+>
+  <div
+    class:list={['separator-track w-full h-full bg-repeat-x bg-center', { 'separator-track--reverse': reverse }]}
+    style="background-image: url('/images/pattern.svg'); background-size: auto 100%; min-width: 200%;"
+  >
+  </div>
 </div>
 
 <style>
-  @keyframes separator-slide {
-    from {
-      translate: 0 0;
-    }
+  @keyframes separator-scroll {
     to {
       translate: -25% 0;
     }
   }
 
   .separator-track {
-    animation: separator-slide linear;
-    animation-timeline: view();
-    animation-range: entry 0% exit 100%;
+    animation: separator-scroll linear;
+    animation-timeline: scroll(root);
+  }
+
+  .separator-track--reverse {
+    animation-direction: reverse;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .separator-track {
+      animation: none;
+    }
   }
 </style>
