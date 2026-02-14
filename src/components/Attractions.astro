@@ -89,6 +89,22 @@ const total = slides.length.toString().padStart(2, "0");
         ))
       }
     </div>
+
+    {/* Fallback markers — rendered in HTML, hidden when native ::scroll-marker is supported */}
+    <div class="carousel-markers max-w-4xl mx-auto" role="tablist" aria-label="Carousel navigation">
+      {
+        slides.map((slide, idx) => (
+          <button
+            type="button"
+            role="tab"
+            aria-label={`Slide ${idx + 1}: ${slide.title}`}
+            aria-selected={idx === 0 ? "true" : "false"}
+            class:list={[idx === 0 && "active"]}
+            data-slide-index={idx}
+          />
+        ))
+      }
+    </div>
   </div>
 </section>
 
@@ -233,45 +249,37 @@ const total = slides.length.toString().padStart(2, "0");
 </style>
 
 <script>
-  // Fallback for browsers without scroll-marker-group support (Safari, Firefox)
+  // Wire up fallback markers (Safari, Firefox) — markers are already in HTML
   if (!CSS.supports('scroll-marker-group', 'after')) {
     const carousel = document.querySelector('.carousel') as HTMLElement | null;
-    if (!carousel) throw new Error('Carousel not found');
+    const markersContainer = document.querySelector('.carousel-markers') as HTMLElement | null;
+    if (!carousel || !markersContainer) throw new Error('Carousel elements not found');
 
     const slides = carousel.querySelectorAll('.carousel__slide');
-    if (slides.length < 2) throw new Error('Not enough slides');
+    const buttons = markersContainer.querySelectorAll('button');
 
-    // Create marker container
-    const markers = document.createElement('div');
-    markers.className = 'carousel-markers';
-    markers.setAttribute('role', 'tablist');
-    markers.setAttribute('aria-label', 'Carousel navigation');
-
-    slides.forEach((_, i) => {
-      const btn = document.createElement('button');
-      btn.setAttribute('role', 'tab');
-      btn.setAttribute('aria-label', `Slide ${i + 1}`);
-      if (i === 0) btn.classList.add('active');
+    // Click → scroll to slide
+    buttons.forEach((btn) => {
       btn.addEventListener('click', () => {
-        (slides[i] as HTMLElement).scrollIntoView({
+        const idx = Number(btn.dataset.slideIndex);
+        (slides[idx] as HTMLElement).scrollIntoView({
           behavior: 'smooth',
           block: 'nearest',
           inline: 'start',
         });
       });
-      markers.appendChild(btn);
     });
 
-    carousel.parentElement?.appendChild(markers);
-
-    // Update active marker on scroll
+    // Scroll → update active marker
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
           if (entry.isIntersecting) {
             const idx = Array.from(slides).indexOf(entry.target);
-            markers.querySelectorAll('button').forEach((btn, i) => {
-              btn.classList.toggle('active', i === idx);
+            buttons.forEach((btn, i) => {
+              const isActive = i === idx;
+              btn.classList.toggle('active', isActive);
+              btn.setAttribute('aria-selected', String(isActive));
             });
           }
         }
