@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import { EVENT_CONFIG } from '../utils/eventConfig';
+import { EVENT_CONFIG, SEO_METADATA } from '../utils/eventConfig';
 
 interface Props {
   title: string;
@@ -10,7 +10,7 @@ interface Props {
 
 const {
   title,
-  description = "Slovanské Silové Klání 2026 v Pustiměři: amatérská silová soutěž, originální disciplíny, doprovodný program, lukostřelba, kovářská dílna a grilování.",
+  description = SEO_METADATA.description,
   lang = "cs",
 } = Astro.props;
 

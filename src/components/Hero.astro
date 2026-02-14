@@ -2,8 +2,8 @@
 import { useTranslations } from "../i18n/utils";
 import {
   getFormattedDateTime,
+  getEventStartISOStringUTC,
   getFullLocation,
-  EVENT_CONFIG,
 } from "../utils/eventConfig";
 import Button from "./ui/Button.astro";
 
@@ -11,13 +11,7 @@ import Button from "./ui/Button.astro";
 const lang = "cs";
 const t = useTranslations(lang);
 
-const eventDate = new Date(
-  EVENT_CONFIG.date.year,
-  EVENT_CONFIG.date.month - 1,
-  EVENT_CONFIG.date.day,
-  EVENT_CONFIG.time.startHour,
-  EVENT_CONFIG.time.startMinute,
-).toISOString();
+const eventDate = getEventStartISOStringUTC();
 ---
 
 <section

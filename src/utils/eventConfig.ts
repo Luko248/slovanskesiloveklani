@@ -25,6 +25,23 @@ export const EVENT_CONFIG = {
   },
 } as const;
 
+export const SEO_METADATA = {
+  title: "Slovanské Silové Klání 2026 | Silová soutěž v Pustiměři",
+  description:
+    "Slovanské Silové Klání 2026 v Pustiměři: amatérská silová soutěž, originální disciplíny, doprovodný program, lukostřelba, kovářská dílna a grilování.",
+} as const;
+
+const PRAGUE_UTC_OFFSET_HOURS = 2; // CEST (UTC+2) for June event date
+
+const formatICSUtcTimestamp = (hour: number, minute: number): string => {
+  const { year, month, day } = EVENT_CONFIG.date;
+  const utcDate = new Date(
+    Date.UTC(year, month - 1, day, hour - PRAGUE_UTC_OFFSET_HOURS, minute, 0),
+  );
+
+  return `${utcDate.getUTCFullYear()}${String(utcDate.getUTCMonth() + 1).padStart(2, "0")}${String(utcDate.getUTCDate()).padStart(2, "0")}T${String(utcDate.getUTCHours()).padStart(2, "0")}${String(utcDate.getUTCMinutes()).padStart(2, "0")}${String(utcDate.getUTCSeconds()).padStart(2, "0")}Z`;
+};
+
 /**
  * Returns formatted date string
  * @param locale - Locale for formatting (default: 'cs-CZ')
@@ -62,13 +79,8 @@ export const getFormattedDateTime = (): string => {
  * @returns UTC timestamp "20260613T073000Z"
  */
 export const getICSStartTime = (): string => {
-  const { year, month, day } = EVENT_CONFIG.date;
   const { startHour, startMinute } = EVENT_CONFIG.time;
-
-  // Convert CEST (UTC+2) to UTC by subtracting 2 hours
-  const utcHour = startHour - 2;
-
-  return `${year}${String(month).padStart(2, '0')}${String(day).padStart(2, '0')}T${String(utcHour).padStart(2, '0')}${String(startMinute).padStart(2, '0')}00Z`;
+  return formatICSUtcTimestamp(startHour, startMinute);
 };
 
 /**
@@ -77,13 +89,17 @@ export const getICSStartTime = (): string => {
  * @returns UTC timestamp "20260613T140000Z"
  */
 export const getICSEndTime = (): string => {
-  const { year, month, day } = EVENT_CONFIG.date;
   const { endHour, endMinute } = EVENT_CONFIG.time;
+  return formatICSUtcTimestamp(endHour, endMinute);
+};
 
-  // Convert CEST (UTC+2) to UTC by subtracting 2 hours
-  const utcHour = endHour - 2;
-
-  return `${year}${String(month).padStart(2, '0')}${String(day).padStart(2, '0')}T${String(utcHour).padStart(2, '0')}${String(endMinute).padStart(2, '0')}00Z`;
+/**
+ * Returns event start time in ISO UTC format for browser countdown usage.
+ * Example: "2026-06-13T07:30:00Z" for 09:30 CEST (Europe/Prague).
+ */
+export const getEventStartISOStringUTC = (): string => {
+  const timestamp = getICSStartTime();
+  return `${timestamp.slice(0, 4)}-${timestamp.slice(4, 6)}-${timestamp.slice(6, 8)}T${timestamp.slice(9, 11)}:${timestamp.slice(11, 13)}:${timestamp.slice(13, 15)}Z`;
 };
 
 /**

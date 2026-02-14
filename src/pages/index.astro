@@ -11,11 +11,12 @@ import Partners from '../components/Partners.astro';
 import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
 import SectionSeparator from '../components/SectionSeparator.astro';
+import { SEO_METADATA } from '../utils/eventConfig';
 ---
 
 <BaseLayout
-  title="Slovanské Silové Klání 2026 | Silová soutěž v Pustiměři"
-  description="Slovanské Silové Klání 2026 v Pustiměři: amatérská silová soutěž, originální disciplíny, doprovodný program, lukostřelba, kovářská dílna a grilování."
+  title={SEO_METADATA.title}
+  description={SEO_METADATA.description}
   lang="cs"
 >
   <Header lang="cs" />

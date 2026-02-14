@@ -1,9 +1,15 @@
-import { EVENT_CONFIG, getICSStartTime, getICSEndTime, getFullLocation } from './eventConfig';
+import {
+    EVENT_CONFIG,
+    SEO_METADATA,
+    getICSStartTime,
+    getICSEndTime,
+    getFullLocation,
+} from './eventConfig';
 
 export const generateICS = () => {
     const event = {
-        title: EVENT_CONFIG.title,
-        description: `${EVENT_CONFIG.edition} amatérské silové soutěže / 5th Annual Amateur Strongman Competition`,
+        title: SEO_METADATA.title,
+        description: SEO_METADATA.description,
         startTime: getICSStartTime(),
         endTime: getICSEndTime(),
         location: getFullLocation(),
