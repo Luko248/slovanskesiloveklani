@@ -9,7 +9,7 @@ export const EVENT_CONFIG = {
   date: {
     year: 2026,
     month: 6, // June
-    day: 13,
+    day: 6,
   },
   time: {
     startHour: 9,
@@ -28,7 +28,7 @@ export const EVENT_CONFIG = {
 export const SEO_METADATA = {
   title: "Slovanské Silové Klání 2026 | Silová soutěž v Pustiměři",
   description:
-    "Slovanské Silové Klání 2026 v Pustiměři: amatérská silová soutěž, originální disciplíny, doprovodný program, lukostřelba, kovářská dílna a grilování.",
+    "Slovanské Silové Klání 2026 v Pustiměři: amatérská silová soutěž, originální disciplíny, skvělá atmosféra a občerstvení po celý den.",
 } as const;
 
 const PRAGUE_UTC_OFFSET_HOURS = 2; // CEST (UTC+2) for June event date
@@ -45,11 +45,11 @@ const formatICSUtcTimestamp = (hour: number, minute: number): string => {
 /**
  * Returns formatted date string
  * @param locale - Locale for formatting (default: 'cs-CZ')
- * @returns Date in format "13.06.2026"
+ * @returns Date in format "6.6.2026"
  */
 export const getFormattedDate = (locale: string = 'cs-CZ'): string => {
   const { year, month, day } = EVENT_CONFIG.date;
-  return `${String(day).padStart(2, '0')}.${String(month).padStart(2, '0')}.${year}`;
+  return `${day}.${month}.${year}`;
 };
 
 /**
@@ -65,7 +65,7 @@ export const getFormattedTime = (): string => {
 
 /**
  * Returns formatted date and start time
- * @returns DateTime in format "13.06.2026 | 9:30"
+ * @returns DateTime in format "6.6.2026 | 9:30"
  */
 export const getFormattedDateTime = (): string => {
   const { startHour, startMinute } = EVENT_CONFIG.time;
@@ -75,8 +75,8 @@ export const getFormattedDateTime = (): string => {
 
 /**
  * Returns ICS start time in UTC format
- * June 13, 2026 at 9:30 CEST (UTC+2) = 7:30 UTC
- * @returns UTC timestamp "20260613T073000Z"
+ * June 6, 2026 at 9:30 CEST (UTC+2) = 7:30 UTC
+ * @returns UTC timestamp "20260606T073000Z"
  */
 export const getICSStartTime = (): string => {
   const { startHour, startMinute } = EVENT_CONFIG.time;
@@ -85,8 +85,8 @@ export const getICSStartTime = (): string => {
 
 /**
  * Returns ICS end time in UTC format
- * June 13, 2026 at 16:00 CEST (UTC+2) = 14:00 UTC
- * @returns UTC timestamp "20260613T140000Z"
+ * June 6, 2026 at 16:00 CEST (UTC+2) = 14:00 UTC
+ * @returns UTC timestamp "20260606T140000Z"
  */
 export const getICSEndTime = (): string => {
   const { endHour, endMinute } = EVENT_CONFIG.time;
@@ -95,7 +95,7 @@ export const getICSEndTime = (): string => {
 
 /**
  * Returns event start time in ISO UTC format for browser countdown usage.
- * Example: "2026-06-13T07:30:00Z" for 09:30 CEST (Europe/Prague).
+ * Example: "2026-06-06T07:30:00Z" for 09:30 CEST (Europe/Prague).
  */
 export const getEventStartISOStringUTC = (): string => {
   const timestamp = getICSStartTime();
